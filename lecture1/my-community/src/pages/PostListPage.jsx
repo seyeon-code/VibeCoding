@@ -37,8 +37,8 @@ const PostListPage = () => {
     let query = supabase
       .from('posts')
       .select(`
-        id, title, created_at, views,
-        profiles!posts_author_id_fkey(name, body_type),
+        id, title, created_at, views, author_id,
+        profiles!posts_author_profile_fkey(name, body_type),
         comments(count),
         likes(count)
       `, { count: 'exact' })
@@ -50,10 +50,11 @@ const PostListPage = () => {
     }
 
     const { data, count, error } = await query;
-    if (!error) {
-      setPosts(data || []);
-      setTotal(count || 0);
+    if (error) {
+      console.error('posts 조회 오류:', error);
     }
+    setPosts(data || []);
+    setTotal(count || 0);
     setLoading(false);
   }, [page, search]);
 

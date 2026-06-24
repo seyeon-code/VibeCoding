@@ -41,7 +41,7 @@ const PostDetailPage = () => {
   const fetchPost = async () => {
     const { data } = await supabase
       .from('posts')
-      .select('*, profiles!posts_author_id_fkey(name, body_type)')
+      .select('*, profiles!posts_author_profile_fkey(name, body_type)')
       .eq('id', id)
       .single();
     setPost(data);
@@ -54,7 +54,7 @@ const PostDetailPage = () => {
   const fetchComments = async () => {
     const { data } = await supabase
       .from('comments')
-      .select('*, profiles!comments_author_id_fkey(name)')
+      .select('*, profiles!comments_author_profile_fkey(name)')
       .eq('post_id', id)
       .order('created_at', { ascending: true });
     setComments(data || []);
