@@ -9,6 +9,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
@@ -30,6 +33,13 @@ const PostDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  // 수정 모드 상태
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState('');
+  const [editContent, setEditContent] = useState('');
+  const [editSaving, setEditSaving] = useState(false);
+  const [editError, setEditError] = useState('');
 
   useEffect(() => {
     fetchPost();
@@ -112,6 +122,36 @@ const PostDetailPage = () => {
     navigate('/posts');
   };
 
+  const handleEditStart = () => {
+    setEditTitle(post.title);
+    setEditContent(post.content);
+    setEditError('');
+    setIsEditing(true);
+  };
+
+  const handleEditCancel = () => {
+    setIsEditing(false);
+    setEditError('');
+  };
+
+  const handleEditSave = async () => {
+    if (!editTitle.trim()) { setEditError('제목을 입력해주세요.'); return; }
+    if (!editContent.trim()) { setEditError('내용을 입력해주세요.'); return; }
+    setEditSaving(true);
+    setEditError('');
+    const { error: err } = await supabase
+      .from('posts')
+      .update({ title: editTitle.trim(), content: editContent.trim() })
+      .eq('id', id);
+    if (err) {
+      setEditError('수정에 실패했습니다. 다시 시도해주세요.');
+    } else {
+      setPost(prev => ({ ...prev, title: editTitle.trim(), content: editContent.trim() }));
+      setIsEditing(false);
+    }
+    setEditSaving(false);
+  };
+
   if (loading) {
     return (
       <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -144,52 +184,108 @@ const PostDetailPage = () => {
           <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/posts')} sx={{ color: '#7C3AED', fontWeight: 600 }}>
             목록으로
           </Button>
-          {isAuthor && (
-            <Button startIcon={<DeleteIcon />} color="error" size="small" onClick={handleDeletePost}>삭제</Button>
+          {isAuthor && !isEditing && (
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button startIcon={<EditIcon />} size="small" onClick={handleEditStart}
+                sx={{ color: '#7C3AED', borderColor: 'rgba(124,58,237,0.4)', border: '1px solid' }}>
+                수정
+              </Button>
+              <Button startIcon={<DeleteIcon />} color="error" size="small" onClick={handleDeletePost}>
+                삭제
+              </Button>
+            </Box>
           )}
         </Box>
 
         {/* 게시물 카드 */}
         <Card sx={{ mb: 3 }}>
           <CardContent sx={{ p: 4 }}>
-            <Typography variant="h5" fontWeight={700} color="text.primary" sx={{ mb: 2.5, lineHeight: 1.4 }}>
-              {post.title}
-            </Typography>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
-              <Avatar sx={{ width: 40, height: 40, background: `linear-gradient(135deg, ${getAvatarColor(profile?.name)}, #3B82F6)`, fontWeight: 700, fontSize: '1rem' }}>
-                {profile?.name?.charAt(0) || '?'}
-              </Avatar>
-              <Box>
-                <Typography variant="body2" fontWeight={600} color="text.primary">{profile?.name || '알 수 없음'}</Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {/* 수정 모드 */}
+            {isEditing ? (
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Typography variant="subtitle2" color="text.secondary" fontWeight={600}>게시물 수정</Typography>
+                {editError && <Alert severity="error" sx={{ borderRadius: 2 }}>{editError}</Alert>}
+                <TextField
+                  label="제목"
+                  fullWidth
+                  value={editTitle}
+                  onChange={e => setEditTitle(e.target.value)}
+                />
+                <TextField
+                  label="내용"
+                  fullWidth
+                  multiline
+                  minRows={8}
+                  value={editContent}
+                  onChange={e => setEditContent(e.target.value)}
+                />
+                <Box sx={{ display: 'flex', gap: 1.5, justifyContent: 'flex-end' }}>
+                  <Button
+                    startIcon={<CloseIcon />}
+                    onClick={handleEditCancel}
+                    disabled={editSaving}
+                    sx={{ color: '#6B7280' }}
+                  >
+                    취소
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<CheckIcon />}
+                    onClick={handleEditSave}
+                    disabled={editSaving}
+                    sx={{ fontWeight: 600 }}
+                  >
+                    {editSaving ? '저장 중...' : '저장'}
+                  </Button>
+                </Box>
+              </Box>
+            ) : (
+              <>
+                <Typography variant="h5" fontWeight={700} color="text.primary" sx={{ mb: 2.5, lineHeight: 1.4 }}>
+                  {post.title}
                 </Typography>
-              </Box>
-              <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <VisibilityIcon sx={{ fontSize: 14, color: '#9CA3AF' }} />
-                <Typography variant="caption" color="text.secondary">{post.views}</Typography>
-              </Box>
-            </Box>
 
-            <Divider sx={{ mb: 3, borderColor: 'rgba(124,58,237,0.1)' }} />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
+                  <Avatar sx={{ width: 40, height: 40, background: `linear-gradient(135deg, ${getAvatarColor(profile?.name)}, #3B82F6)`, fontWeight: 700, fontSize: '1rem' }}>
+                    {profile?.name?.charAt(0) || '?'}
+                  </Avatar>
+                  <Box>
+                    <Typography variant="body2" fontWeight={600} color="text.primary">{profile?.name || '알 수 없음'}</Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      {post.updated_at !== post.created_at && (
+                        <span style={{ marginLeft: 6, color: '#A78BFA' }}>(수정됨)</span>
+                      )}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <VisibilityIcon sx={{ fontSize: 14, color: '#9CA3AF' }} />
+                    <Typography variant="caption" color="text.secondary">{post.views}</Typography>
+                  </Box>
+                </Box>
 
-            <Typography variant="body1" color="text.primary" sx={{ lineHeight: 1.9, whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>
-              {post.content}
-            </Typography>
+                <Divider sx={{ mb: 3, borderColor: 'rgba(124,58,237,0.1)' }} />
 
-            {/* 좋아요 버튼 */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-              <Box
-                onClick={handleLike}
-                sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5, cursor: 'pointer', p: 2, borderRadius: 3, border: liked ? '2px solid #EC4899' : '2px solid rgba(124,58,237,0.15)', background: liked ? 'rgba(236,72,153,0.06)' : 'rgba(255,255,255,0.6)', transition: 'all 0.2s', minWidth: 80, '&:hover': { background: 'rgba(236,72,153,0.08)', borderColor: '#EC4899' } }}
-              >
-                {liked
-                  ? <FavoriteIcon sx={{ color: '#EC4899', fontSize: 28 }} />
-                  : <FavoriteBorderIcon sx={{ color: '#9CA3AF', fontSize: 28 }} />}
-                <Typography variant="body2" fontWeight={600} sx={{ color: liked ? '#EC4899' : '#9CA3AF' }}>{likeCount}</Typography>
-              </Box>
-            </Box>
+                <Typography variant="body1" color="text.primary" sx={{ lineHeight: 1.9, whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>
+                  {post.content}
+                </Typography>
+
+                {/* 좋아요 버튼 */}
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                  <Box
+                    onClick={handleLike}
+                    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5, cursor: 'pointer', p: 2, borderRadius: 3, border: liked ? '2px solid #EC4899' : '2px solid rgba(124,58,237,0.15)', background: liked ? 'rgba(236,72,153,0.06)' : 'rgba(255,255,255,0.6)', transition: 'all 0.2s', minWidth: 80, '&:hover': { background: 'rgba(236,72,153,0.08)', borderColor: '#EC4899' } }}
+                  >
+                    {liked
+                      ? <FavoriteIcon sx={{ color: '#EC4899', fontSize: 28 }} />
+                      : <FavoriteBorderIcon sx={{ color: '#9CA3AF', fontSize: 28 }} />}
+                    <Typography variant="body2" fontWeight={600} sx={{ color: liked ? '#EC4899' : '#9CA3AF' }}>{likeCount}</Typography>
+                  </Box>
+                </Box>
+              </>
+            )}
           </CardContent>
         </Card>
 
