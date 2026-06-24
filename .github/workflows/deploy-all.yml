@@ -1,6 +1,13 @@
-name: Deploy my-community to GitHub Pages (disabled - use deploy-all.yml)
+name: Deploy All to GitHub Pages
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'lecture1/my-community/**'
+      - 'lecture1/my-portfolio/**'
+      - '.github/workflows/deploy-all.yml'
   workflow_dispatch:
 
 permissions:
@@ -24,16 +31,28 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: lecture1/my-community
-
-      - name: Build
-        run: npm run build
+      - name: Install & Build my-community
+        run: |
+          npm install
+          npm run build
         working-directory: lecture1/my-community
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Install & Build my-portfolio
+        run: |
+          npm install
+          npm run build
+        working-directory: lecture1/my-portfolio
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Combine builds
+        run: |
+          mkdir -p lecture1/my-community/dist/portfolio
+          cp -r lecture1/my-portfolio/dist/. lecture1/my-community/dist/portfolio/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

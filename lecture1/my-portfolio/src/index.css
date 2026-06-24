@@ -1,0 +1,75 @@
+/* 컬러 팔레트 디자인 시스템 - CSS 변수 */
+:root {
+  /* Primary Colors */
+  --color-primary: #D93B2D;
+  --color-primary-light: #E8614F;
+  --color-primary-dark: #C1302A;
+
+  /* Secondary Colors */
+  --color-secondary: #FAF2EC;
+  --color-accent: #C8E04A;
+
+  /* Background Colors */
+  --color-bg-primary: #FAF2EC;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-peach: #F0857A;
+
+  /* Text Colors */
+  --color-text-primary: #2C2C2C;
+  --color-text-secondary: #888888;
+  --color-text-muted: #AAAAAA;
+  --color-text-on-dark: #FFFFFF;
+
+  /* Border / Outline */
+  --color-border: #EDE4DC;
+  --color-border-light: #F5EEE8;
+
+  /* Interactive Colors */
+  --color-button-primary: #D93B2D;
+  --color-button-hover: #C1302A;
+  --color-link: #D93B2D;
+  --color-link-hover: #C1302A;
+
+  /* Footer */
+  --color-footer-bg: #C1302A;
+  --color-footer-text: #FFFFFF;
+}
+
+/* 다크 모드 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #1E1512;
+    --color-bg-secondary: #2A1E19;
+    --color-text-primary: #F5EEE8;
+    --color-text-secondary: #C4B5AB;
+    --color-text-muted: #8C7B73;
+    --color-primary: #E04D3F;
+    --color-primary-light: #F06050;
+    --color-primary-dark: #C1302A;
+    --color-border: #3D2D26;
+    --color-border-light: #4A3830;
+  }
+}
+
+/* 고대비 모드 */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-primary: #000000;
+    --color-text-secondary: #333333;
+    --color-primary: #B02020;
+    --color-bg-primary: #FFFFFF;
+    --color-border: #555555;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
