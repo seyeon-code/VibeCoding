@@ -174,7 +174,7 @@ const ContactSection = () => {
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: 'rgba(255,255,255,0.6)', maxWidth: 520, mx: 'auto', lineHeight: 1.8 }}
+            sx={{ color: 'rgba(255,255,255,0.92)', maxWidth: 520, mx: 'auto', lineHeight: 1.8 }}
           >
             새로운 프로젝트, 협업 제안, 또는 간단한 인사라도 언제든 환영합니다.
           </Typography>
@@ -217,10 +217,10 @@ const ContactSection = () => {
                       {info.icon}
                     </Box>
                     <Box>
-                      <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.45)', display: 'block', mb: 0.3, fontWeight: 600, letterSpacing: '0.06em' }}>
+                      <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.85)', display: 'block', mb: 0.3, fontWeight: 600, letterSpacing: '0.06em' }}>
                         {info.label}
                       </Typography>
-                      <Typography variant="body2" sx={{ color: '#E2E8F0', fontWeight: 500, wordBreak: 'break-all' }}>
+                      <Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 600, wordBreak: 'break-all' }}>
                         {info.value}
                       </Typography>
                     </Box>
@@ -238,7 +238,7 @@ const ContactSection = () => {
           <Typography variant="h4" fontWeight={700} sx={{ color: '#FFFFFF', mb: 1 }}>
             방명록
           </Typography>
-          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.5)' }}>
+          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
             여기에 흔적을 남겨주세요 👣
           </Typography>
         </Box>
@@ -311,7 +311,7 @@ const ContactSection = () => {
 
                   {/* 키워드 선택 */}
                   <Box>
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)', mb: 1, display: 'block' }}>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1, display: 'block' }}>
                       방문 목적 (선택)
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.8 }}>
@@ -325,7 +325,7 @@ const ContactSection = () => {
                             cursor: 'pointer',
                             fontSize: '0.72rem',
                             background: form.keyword === kw ? 'rgba(96,165,250,0.3)' : 'rgba(255,255,255,0.07)',
-                            color: form.keyword === kw ? '#93C5FD' : 'rgba(255,255,255,0.6)',
+                            color: form.keyword === kw ? '#93C5FD' : 'rgba(255,255,255,0.95)',
                             border: form.keyword === kw ? '1px solid rgba(96,165,250,0.5)' : '1px solid rgba(255,255,255,0.12)',
                             '&:hover': { background: 'rgba(96,165,250,0.2)' },
                           }}
@@ -336,7 +336,7 @@ const ContactSection = () => {
 
                   {/* 이모지 선택 */}
                   <Box>
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)', mb: 1, display: 'block' }}>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1, display: 'block' }}>
                       이모지 선택
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.6 }}>
@@ -392,7 +392,7 @@ const ContactSection = () => {
                 <Card sx={{ ...glassCard }}>
                   <CardContent sx={{ py: 6, textAlign: 'center' }}>
                     <Typography sx={{ fontSize: '2.5rem', mb: 1 }}>📭</Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.4)' }}>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.85)' }}>
                       첫 번째 방명록을 남겨주세요!
                     </Typography>
                   </CardContent>
@@ -417,7 +417,7 @@ const ContactSection = () => {
                               {entry.name}
                             </Typography>
                             {entry.organization && (
-                              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.06)', px: 1, py: 0.2, borderRadius: '4px' }}>
+                              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.9)', background: 'rgba(255,255,255,0.15)', px: 1, py: 0.2, borderRadius: '4px' }}>
                                 {entry.organization}
                               </Typography>
                             )}
@@ -429,12 +429,12 @@ const ContactSection = () => {
                               />
                             )}
                           </Box>
-                          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, wordBreak: 'keep-all', mb: 1 }}>
+                          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.95)', lineHeight: 1.7, wordBreak: 'keep-all', mb: 1 }}>
                             {entry.message}
                           </Typography>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                            <AccessTimeIcon sx={{ fontSize: 11, color: 'rgba(255,255,255,0.3)' }} />
-                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem' }}>
+                            <AccessTimeIcon sx={{ fontSize: 11, color: 'rgba(255,255,255,0.75)' }} />
+                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.7rem' }}>
                               {formatDate(entry.created_at)}
                             </Typography>
                           </Box>
@@ -450,7 +450,7 @@ const ContactSection = () => {
 
         {/* 푸터 */}
         <Box sx={{ mt: { xs: 8, md: 10 }, textAlign: 'center', pt: 4, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.25)' }}>
+          <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
             © 2026 고세연. Built with React + MUI + Supabase ✨
           </Typography>
         </Box>
@@ -468,9 +468,9 @@ const inputSx = {
     background: 'rgba(255,255,255,0.05)',
     borderRadius: '10px',
   },
-  '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.45)' },
+  '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.9)' },
   '& .MuiInputLabel-root.Mui-focused': { color: '#60A5FA' },
-  '& .MuiInputBase-input::placeholder': { color: 'rgba(255,255,255,0.25)' },
+  '& .MuiInputBase-input::placeholder': { color: 'rgba(255,255,255,0.6)' },
 };
 
 export default ContactSection;
