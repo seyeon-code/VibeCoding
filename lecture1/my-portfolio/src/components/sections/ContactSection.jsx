@@ -49,10 +49,10 @@ const EMOJI_OPTIONS = ['👋', '🙌', '💡', '🚀', '🌟', '❤️', '🎉',
 const KEYWORD_OPTIONS = ['응원합니다', '같이 일해요', '프로젝트 제안', '정보 공유', '친구 신청', '기타'];
 
 const glassCard = {
-  background: 'rgba(255, 255, 255, 0.18)',
-  backdropFilter: 'blur(16px)',
-  WebkitBackdropFilter: 'blur(16px)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
+  background: 'rgba(255, 255, 255, 0.32)',
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  border: '1px solid rgba(255, 255, 255, 0.5)',
   borderRadius: '16px',
   transition: 'all 0.3s ease',
 };
@@ -399,7 +399,7 @@ const ContactSection = () => {
                 </Card>
               ) : (
                 entries.map((entry) => (
-                  <Card key={entry.id} sx={{ ...glassCard, '&:hover': { background: 'rgba(255,255,255,0.12)', transform: 'translateX(4px)' } }}>
+                  <Card key={entry.id} sx={{ ...glassCard, '&:hover': { background: 'rgba(255,255,255,0.42)', transform: 'translateX(4px)' } }}>
                     <CardContent sx={{ p: 2.5 }}>
                       <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
                         <Avatar
