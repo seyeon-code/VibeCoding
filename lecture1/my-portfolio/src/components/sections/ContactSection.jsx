@@ -49,10 +49,10 @@ const EMOJI_OPTIONS = ['👋', '🙌', '💡', '🚀', '🌟', '❤️', '🎉',
 const KEYWORD_OPTIONS = ['응원합니다', '같이 일해요', '프로젝트 제안', '정보 공유', '친구 신청', '기타'];
 
 const glassCard = {
-  background: 'rgba(255, 255, 255, 0.08)',
+  background: 'rgba(255, 255, 255, 0.18)',
   backdropFilter: 'blur(16px)',
   WebkitBackdropFilter: 'blur(16px)',
-  border: '1px solid rgba(255, 255, 255, 0.15)',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
   borderRadius: '16px',
   transition: 'all 0.3s ease',
 };
@@ -139,15 +139,15 @@ const ContactSection = () => {
   return (
     <Box
       sx={{
-        background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #0F172A 100%)',
+        background: 'linear-gradient(135deg, #1D4ED8 0%, #2563EB 40%, #3B82F6 100%)',
         py: { xs: 10, md: 14 },
         position: 'relative',
         overflow: 'hidden',
       }}
     >
       {/* 배경 장식 */}
-      <Box sx={{ position: 'absolute', top: -200, right: -200, width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <Box sx={{ position: 'absolute', bottom: -150, left: -150, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(167,139,250,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', top: -200, right: -200, width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', bottom: -150, left: -150, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* 섹션 헤더 */}
