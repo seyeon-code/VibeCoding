@@ -31,7 +31,7 @@ const MyPage = () => {
     const fetchMyData = async () => {
       setLoading(true);
       const { data } = await supabase
-        .from('posts')
+        .from('reborn_posts')
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
@@ -58,7 +58,7 @@ const MyPage = () => {
     setSaving(true);
     setSaveError('');
     const { error } = await supabase
-      .from('users')
+      .from('reborn_users')
       .update({
         display_name: editForm.display_name.trim(),
         bio: editForm.bio.trim(),

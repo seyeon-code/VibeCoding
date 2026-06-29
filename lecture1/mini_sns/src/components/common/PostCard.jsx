@@ -63,10 +63,10 @@ const PostCard = ({ post, compact = false }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
             <Avatar sx={{ width: 22, height: 22, fontSize: '0.65rem' }}>
-              {post.users?.display_name?.[0] || '익'}
+              {post.reborn_users?.display_name?.[0] || '익'}
             </Avatar>
             <Typography variant="caption" color="text.secondary">
-              {post.users?.display_name || '익명'}
+              {post.reborn_users?.display_name || '익명'}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>

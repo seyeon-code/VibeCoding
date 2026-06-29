@@ -33,8 +33,8 @@ const PostsPage = () => {
     const fetchPosts = async () => {
       setLoading(true);
       let query = supabase
-        .from('posts')
-        .select('*, users(display_name, avatar_url)')
+        .from('reborn_posts')
+        .select('*, reborn_users(display_name, avatar_url)')
         .order('created_at', { ascending: false })
         .limit(30);
       if (typeParam) query = query.eq('post_type', typeParam);

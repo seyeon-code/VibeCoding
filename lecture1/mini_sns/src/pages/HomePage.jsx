@@ -56,10 +56,10 @@ const HomePage = () => {
     const fetchAll = async () => {
       setLoading(true);
       const [a, r, l, v] = await Promise.all([
-        supabase.from('posts').select('*, users(display_name, avatar_url)').eq('post_type', 'animal').order('likes_count').limit(6),
-        supabase.from('posts').select('*, users(display_name, avatar_url)').eq('post_type', 'review').order('created_at', { ascending: false }).limit(5),
-        supabase.from('posts').select('*, users(display_name, avatar_url)').eq('post_type', 'lost_found').order('created_at', { ascending: false }).limit(5),
-        supabase.from('posts').select('*, users(display_name, avatar_url)').eq('post_type', 'volunteer').order('created_at', { ascending: false }).limit(3),
+        supabase.from('reborn_posts').select('*, reborn_users(display_name, avatar_url)').eq('post_type', 'animal').order('likes_count').limit(6),
+        supabase.from('reborn_posts').select('*, reborn_users(display_name, avatar_url)').eq('post_type', 'review').order('created_at', { ascending: false }).limit(5),
+        supabase.from('reborn_posts').select('*, reborn_users(display_name, avatar_url)').eq('post_type', 'lost_found').order('created_at', { ascending: false }).limit(5),
+        supabase.from('reborn_posts').select('*, reborn_users(display_name, avatar_url)').eq('post_type', 'volunteer').order('created_at', { ascending: false }).limit(3),
       ]);
       setAnimals(a.data || []);
       setReviews(r.data || []);
@@ -74,11 +74,11 @@ const HomePage = () => {
     <Box>
       {/* 상단 앱바 */}
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
-        <Toolbar sx={{ justifyContent: 'space-between', minHeight: 56 }}>
+        <Toolbar sx={{ justifyContent: 'center', position: 'relative', minHeight: 56 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, color: '#E8806A', letterSpacing: '-0.5px' }}>
             🐾 Re:born
           </Typography>
-          <Box sx={{ display: 'flex', gap: 0.5 }}>
+          <Box sx={{ position: 'absolute', right: 8 }}>
             <IconButton size="small">
               <NotificationsNoneRoundedIcon sx={{ color: 'text.secondary' }} />
             </IconButton>

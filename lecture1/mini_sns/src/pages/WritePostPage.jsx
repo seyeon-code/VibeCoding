@@ -93,7 +93,7 @@ const WritePostPage = () => {
       likes_count: 0,
     };
 
-    const { data, error: err } = await supabase.from('posts').insert(payload).select().single();
+    const { data, error: err } = await supabase.from('reborn_posts').insert(payload).select().single();
     if (err) { setError('게시물 등록에 실패했어요. 다시 시도해주세요.'); setSubmitting(false); return; }
     navigate(`/posts/${data.id}`);
   };

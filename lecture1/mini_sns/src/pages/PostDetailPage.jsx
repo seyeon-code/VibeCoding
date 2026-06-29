@@ -47,8 +47,8 @@ const PostDetailPage = () => {
     const fetchData = async () => {
       setLoading(true);
       const { data: p } = await supabase
-        .from('posts')
-        .select('*, users(id, display_name, avatar_url, username)')
+        .from('reborn_posts')
+        .select('*, reborn_users(id, display_name, avatar_url, username)')
         .eq('id', id)
         .single();
 
@@ -58,7 +58,7 @@ const PostDetailPage = () => {
 
       if (p.related_post_id) {
         const { data: rp } = await supabase
-          .from('posts')
+          .from('reborn_posts')
           .select('*')
           .eq('id', p.related_post_id)
           .single();
@@ -66,8 +66,8 @@ const PostDetailPage = () => {
       }
 
       const { data: c } = await supabase
-        .from('comments')
-        .select('*, users(display_name, avatar_url)')
+        .from('reborn_comments')
+        .select('*, reborn_users(display_name, avatar_url)')
         .eq('post_id', id)
         .order('created_at', { ascending: true });
       setComments(c || []);
@@ -81,7 +81,7 @@ const PostDetailPage = () => {
     const newCount = liked ? likeCount - 1 : likeCount + 1;
     setLiked(!liked);
     setLikeCount(newCount);
-    await supabase.from('posts').update({ likes_count: newCount }).eq('id', id);
+    await supabase.from('reborn_posts').update({ likes_count: newCount }).eq('id', id);
   };
 
   const handleComment = async (e) => {
@@ -89,9 +89,9 @@ const PostDetailPage = () => {
     if (!newComment.trim()) return;
     if (!user) { navigate('/login'); return; }
     setSubmitting(true);
-    const { data: profile } = await supabase.from('users').select('display_name, avatar_url').eq('id', user.id).single();
+    const { data: profile } = await supabase.from('reborn_users').select('display_name, avatar_url').eq('id', user.id).single();
     const { data: c } = await supabase
-      .from('comments')
+      .from('reborn_comments')
       .insert({ content: newComment.trim(), user_id: user.id, post_id: id })
       .select()
       .single();
@@ -179,9 +179,9 @@ const PostDetailPage = () => {
         {/* 작성자 */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5 }}>
           <Avatar sx={{ width: 28, height: 28, fontSize: '0.75rem' }}>
-            {post.users?.display_name?.[0] || '익'}
+            {post.reborn_users?.display_name?.[0] || '익'}
           </Avatar>
-          <Typography variant="body2" sx={{ fontWeight: 600 }}>{post.users?.display_name || '익명'}</Typography>
+          <Typography variant="body2" sx={{ fontWeight: 600 }}>{post.reborn_users?.display_name || '익명'}</Typography>
           <Typography variant="caption" color="text.secondary">
             {new Date(post.created_at).toLocaleDateString('ko-KR')}
           </Typography>
@@ -290,11 +290,11 @@ const PostDetailPage = () => {
           {comments.map(c => (
             <Box key={c.id} sx={{ display: 'flex', gap: 1.5, mb: 2 }}>
               <Avatar sx={{ width: 32, height: 32, fontSize: '0.8rem', flexShrink: 0 }}>
-                {c.users?.display_name?.[0] || '익'}
+                {c.reborn_users?.display_name?.[0] || '익'}
               </Avatar>
               <Box sx={{ flex: 1, bgcolor: '#FFF6F2', borderRadius: 2.5, px: 1.5, py: 1 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.25 }}>
-                  <Typography variant="caption" sx={{ fontWeight: 700 }}>{c.users?.display_name || '익명'}</Typography>
+                  <Typography variant="caption" sx={{ fontWeight: 700 }}>{c.reborn_users?.display_name || '익명'}</Typography>
                   <Typography variant="caption" color="text.secondary">
                     {new Date(c.created_at).toLocaleDateString('ko-KR')}
                   </Typography>
