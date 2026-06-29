@@ -9,11 +9,11 @@ import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
 const PawIllustration = () => (
-  <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="140" height="148" viewBox="0 0 140 148" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#FFE3D9" />
-        <stop offset="100%" stopColor="#FFD0BE" />
+      <radialGradient id="bgGrad" cx="50%" cy="38%" r="62%">
+        <stop offset="0%" stopColor="#FFE8DF" />
+        <stop offset="100%" stopColor="#FFCDB8" />
       </radialGradient>
       <radialGradient id="mainPad" cx="40%" cy="35%" r="65%">
         <stop offset="0%" stopColor="#FFBDAD" />
@@ -23,42 +23,61 @@ const PawIllustration = () => (
         <stop offset="0%" stopColor="#FFD0BE" />
         <stop offset="100%" stopColor="#FFB09A" />
       </radialGradient>
-      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#FFB8A2" floodOpacity="0.35" />
+      <filter id="heartShadow" x="-18%" y="-12%" width="136%" height="136%">
+        <feDropShadow dx="0" dy="6" stdDeviation="9" floodColor="#FFB8A2" floodOpacity="0.28" />
+      </filter>
+      <filter id="pawShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#FFB8A2" floodOpacity="0.22" />
       </filter>
     </defs>
 
-    {/* 배경 원 */}
-    <circle cx="65" cy="65" r="58" fill="url(#bgGrad)" />
+    {/* 하트 배경 (연속선 일러스트 느낌) */}
+    <g filter="url(#heartShadow)">
+      <path
+        d="M70,118 C40,100 10,76 10,48 C10,30 24,16 42,16 C52,16 61,22 70,32 C79,22 88,16 98,16 C116,16 130,30 130,48 C130,76 100,100 70,118 Z"
+        fill="url(#bgGrad)"
+      />
+    </g>
 
-    {/* 작은 하트들 */}
-    <text x="15" y="32" fontSize="13" opacity="0.7">💗</text>
-    <text x="95" y="26" fontSize="10" opacity="0.6">💕</text>
-    <text x="103" y="92" fontSize="12" opacity="0.6">✨</text>
-    <text x="10" y="95" fontSize="10" opacity="0.55">✨</text>
+    {/* 연속선 루프 (상단 교차점) */}
+    <path
+      d="M70,32 C70,32 67.5,24 66.5,19 C65.5,14 70,11.5 72.5,15 C74.5,18 72.5,25 70,32"
+      fill="none"
+      stroke="#FFAA8A"
+      strokeWidth="2.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      opacity="0.55"
+    />
+    {/* 하단 꼬리 */}
+    <path
+      d="M70,118 C78,125 92,130 101,126 C107,122 106,117 101,116"
+      fill="none"
+      stroke="#FFAA8A"
+      strokeWidth="2.8"
+      strokeLinecap="round"
+      opacity="0.45"
+    />
+
+    {/* 장식 이모지 */}
+    <text x="16" y="44" fontSize="12" opacity="0.65">💗</text>
+    <text x="108" y="36" fontSize="10" opacity="0.55">💕</text>
+    <text x="113" y="100" fontSize="11" opacity="0.5">✨</text>
+    <text x="10" y="102" fontSize="9" opacity="0.48">✨</text>
 
     {/* 발바닥 그룹 */}
-    <g filter="url(#softShadow)" transform="translate(65,68) rotate(-12) translate(-65,-68)">
-      {/* 위쪽 발가락 4개 */}
-      <ellipse cx="38" cy="44" rx="10" ry="11.5" fill="url(#toePad)" />
-      <ellipse cx="55" cy="33" rx="11" ry="12.5" fill="url(#toePad)" />
-      <ellipse cx="75" cy="33" rx="11" ry="12.5" fill="url(#toePad)" />
-      <ellipse cx="92" cy="44" rx="10" ry="11.5" fill="url(#toePad)" />
-
-      {/* 발바닥 메인 */}
-      <ellipse cx="65" cy="74" rx="26" ry="23" fill="url(#mainPad)" />
-
-      {/* 발가락 내부 하이라이트 */}
-      <ellipse cx="36" cy="41" rx="4.5" ry="5" fill="white" opacity="0.3" />
-      <ellipse cx="53" cy="30" rx="5" ry="5.5" fill="white" opacity="0.3" />
-      <ellipse cx="73" cy="30" rx="5" ry="5.5" fill="white" opacity="0.3" />
-      <ellipse cx="90" cy="41" rx="4.5" ry="5" fill="white" opacity="0.3" />
-
-      {/* 메인 패드 하이라이트 */}
-      <ellipse cx="56" cy="66" rx="10" ry="8" fill="white" opacity="0.2" />
-
-      {/* 메인 패드 안 작은 하트 */}
-      <text x="57" y="79" fontSize="14" fill="white" opacity="0.55" fontFamily="sans-serif">♡</text>
+    <g filter="url(#pawShadow)" transform="translate(70,72) rotate(-12) translate(-70,-72)">
+      <ellipse cx="42" cy="52" rx="10" ry="11.5" fill="url(#toePad)" />
+      <ellipse cx="59" cy="40" rx="11" ry="12.5" fill="url(#toePad)" />
+      <ellipse cx="80" cy="40" rx="11" ry="12.5" fill="url(#toePad)" />
+      <ellipse cx="97" cy="52" rx="10" ry="11.5" fill="url(#toePad)" />
+      <ellipse cx="70" cy="82" rx="27" ry="24" fill="url(#mainPad)" />
+      <ellipse cx="40" cy="49" rx="4.5" ry="5" fill="white" opacity="0.28" />
+      <ellipse cx="57" cy="37" rx="5" ry="5.5" fill="white" opacity="0.28" />
+      <ellipse cx="78" cy="37" rx="5" ry="5.5" fill="white" opacity="0.28" />
+      <ellipse cx="95" cy="49" rx="4.5" ry="5" fill="white" opacity="0.28" />
+      <ellipse cx="61" cy="74" rx="10" ry="8" fill="white" opacity="0.18" />
+      <text x="62" y="87" fontSize="14" fill="white" opacity="0.52" fontFamily="sans-serif">♡</text>
     </g>
   </svg>
 );

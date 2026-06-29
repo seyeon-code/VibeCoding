@@ -13,6 +13,32 @@ import AnimalCard from '../components/common/AnimalCard.jsx';
 import PostCard from '../components/common/PostCard.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
+const HeartPaw = () => (
+  <Box sx={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 32, mr: 0.25 }}>
+    <svg width="36" height="32" viewBox="0 0 36 32" fill="none" style={{ position: 'absolute', top: 0, left: 0 }}>
+      <defs>
+        <radialGradient id="mhGrad" cx="50%" cy="38%" r="62%">
+          <stop offset="0%" stopColor="#FFE8DF" />
+          <stop offset="100%" stopColor="#FFCDB8" />
+        </radialGradient>
+      </defs>
+      <path
+        d="M18,29 C10,22 2,18 2,11 C2,6 6,2.5 11,2.5 C13.5,2.5 15.5,4.5 18,7 C20.5,4.5 22.5,2.5 25,2.5 C30,2.5 34,6 34,11 C34,18 26,22 18,29 Z"
+        fill="url(#mhGrad)"
+      />
+      <path
+        d="M18,7 C18,7 16.5,4 16,2.2 C15.5,0.8 18.5,0.4 19.5,2 C20.2,3.2 19.2,5.2 18,7"
+        fill="none"
+        stroke="#FFAA8A"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        opacity="0.65"
+      />
+    </svg>
+    <Typography component="span" sx={{ fontSize: '0.75rem', position: 'relative', zIndex: 1, lineHeight: 1, mt: '2px' }}>🐾</Typography>
+  </Box>
+);
+
 const SectionHeader = ({ title, emoji, onMore }) => (
   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
     <Typography variant="h5" sx={{ fontWeight: 700 }}>
@@ -75,9 +101,12 @@ const HomePage = () => {
       {/* 상단 앱바 */}
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
         <Toolbar sx={{ justifyContent: 'center', position: 'relative', minHeight: 56 }}>
-          <Typography variant="h5" sx={{ fontWeight: 800, color: '#E8806A', letterSpacing: '-0.5px' }}>
-            🐾 Re:born
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <HeartPaw />
+            <Typography variant="h5" sx={{ fontWeight: 800, color: '#E8806A', letterSpacing: '-0.5px' }}>
+              Re:born
+            </Typography>
+          </Box>
           <Box sx={{ position: 'absolute', right: 8 }}>
             <IconButton size="small">
               <NotificationsNoneRoundedIcon sx={{ color: 'text.secondary' }} />
@@ -90,7 +119,7 @@ const HomePage = () => {
         {/* 히어로 배너 */}
         <Box
           sx={{
-            borderRadius: 4,
+            borderRadius: 2,
             background: 'linear-gradient(135deg, #FFB8A2 0%, #FF8C69 100%)',
             p: 3,
             mb: 4,
