@@ -1,0 +1,25 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #FFF6F2;
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  position: relative;
+  background: #FFF6F2;
+  box-shadow: 0 0 40px rgba(255, 140, 105, 0.08);
+}
+
+a { text-decoration: none; color: inherit; }
+
+::-webkit-scrollbar { width: 0; background: transparent; }
+
+img { max-width: 100%; display: block; }
