@@ -139,19 +139,86 @@ const HomePage = () => {
         <Box sx={{ mb: 4 }}>
           <SectionHeader title="따뜻한 입양 후기" emoji="🏡" onMore={() => navigate('/posts?type=review')} />
           {loading ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-              {[1, 2].map(i => (
-                <Skeleton key={i} variant="rectangular" height={100} sx={{ borderRadius: 2.5 }} />
+            <HorizontalList>
+              {[1, 2, 3].map(i => (
+                <Box key={i} sx={{ width: 200, flexShrink: 0 }}>
+                  <Skeleton variant="rectangular" height={150} sx={{ borderRadius: '16px 16px 0 0' }} />
+                  <Skeleton width="90%" height={16} sx={{ mt: 1, mx: 'auto' }} />
+                  <Skeleton width="70%" height={14} sx={{ mx: 'auto' }} />
+                </Box>
               ))}
-            </Box>
+            </HorizontalList>
           ) : reviews.length === 0 ? (
             <EmptyState text="아직 입양 후기가 없어요. 소중한 이야기를 나눠주세요!" />
           ) : (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-              {reviews.slice(0, 3).map(post => (
-                <PostCard key={post.id} post={post} compact />
+            <HorizontalList>
+              {reviews.slice(0, 5).map(post => (
+                <Box
+                  key={post.id}
+                  onClick={() => navigate(`/posts/${post.id}`)}
+                  sx={{
+                    width: 200,
+                    flexShrink: 0,
+                    cursor: 'pointer',
+                    bgcolor: 'background.paper',
+                    borderRadius: 3,
+                    overflow: 'hidden',
+                    boxShadow: '0 4px 16px rgba(255,184,162,0.18)',
+                    transition: 'transform 0.15s',
+                    '&:active': { transform: 'scale(0.97)' },
+                  }}
+                >
+                  {/* 4:3 비율 이미지 */}
+                  <Box sx={{ width: '100%', paddingTop: '75%', position: 'relative', overflow: 'hidden', bgcolor: '#FFE3D9' }}>
+                    {post.image_url && (
+                      <Box
+                        component="img"
+                        src={post.image_url}
+                        alt={post.title || '입양후기'}
+                        sx={{
+                          position: 'absolute',
+                          top: 0, left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                        }}
+                      />
+                    )}
+                    <Box sx={{ position: 'absolute', top: 8, left: 8 }}>
+                      <Chip label="🏡 입양후기" size="small" sx={{ bgcolor: 'rgba(255,255,255,0.92)', color: '#2E7D32', fontSize: '0.65rem', height: 20, fontWeight: 700 }} />
+                    </Box>
+                  </Box>
+                  {/* 텍스트 영역 */}
+                  <Box sx={{ p: 1.5 }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 700, mb: 0.5, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                    >
+                      {post.title || post.caption}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.4 }}
+                    >
+                      {post.caption}
+                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 1 }}>
+                      <Avatar sx={{ width: 16, height: 16, fontSize: '0.55rem' }}>
+                        {post.reborn_users?.display_name?.[0] || '익'}
+                      </Avatar>
+                      <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
+                        {post.reborn_users?.display_name || '익명'}
+                      </Typography>
+                      <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                        <FavoriteRoundedIcon sx={{ fontSize: 11, color: '#FFB8A2' }} />
+                        <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>{post.likes_count ?? 0}</Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
               ))}
-            </Box>
+            </HorizontalList>
           )}
         </Box>
 
