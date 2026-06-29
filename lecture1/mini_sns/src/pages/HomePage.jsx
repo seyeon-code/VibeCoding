@@ -53,41 +53,6 @@ const HeartPaw = () => (
   </Box>
 );
 
-const CuteDog = () => (
-  <svg width="118" height="138" viewBox="0 0 118 138" fill="none">
-    {/* Left floppy ear */}
-    <ellipse cx="23" cy="58" rx="18" ry="27" fill="#FFE8DE" transform="rotate(-22 23 58)" />
-    <ellipse cx="23" cy="61" rx="11" ry="18" fill="#FFCDB8" transform="rotate(-22 23 61)" />
-    {/* Right floppy ear */}
-    <ellipse cx="95" cy="58" rx="18" ry="27" fill="#FFE8DE" transform="rotate(22 95 58)" />
-    <ellipse cx="95" cy="61" rx="11" ry="18" fill="#FFCDB8" transform="rotate(22 95 61)" />
-    {/* Body */}
-    <ellipse cx="59" cy="114" rx="37" ry="30" fill="white" opacity="0.9" />
-    {/* Head */}
-    <circle cx="59" cy="67" r="40" fill="white" opacity="0.95" />
-    {/* Fluffy forehead tuft */}
-    <ellipse cx="59" cy="33" rx="24" ry="17" fill="white" opacity="0.65" />
-    {/* Left eye */}
-    <circle cx="43" cy="61" r="9" fill="#1A0A05" />
-    <circle cx="45.8" cy="58.2" r="3.6" fill="white" />
-    <circle cx="44" cy="63" r="1.4" fill="white" opacity="0.45" />
-    {/* Right eye */}
-    <circle cx="75" cy="61" r="9" fill="#1A0A05" />
-    <circle cx="77.8" cy="58.2" r="3.6" fill="white" />
-    <circle cx="76" cy="63" r="1.4" fill="white" opacity="0.45" />
-    {/* Nose */}
-    <ellipse cx="59" cy="75" rx="7" ry="5.5" fill="#1A0A05" />
-    <circle cx="61.5" cy="73" r="2.2" fill="white" opacity="0.5" />
-    {/* Happy smile */}
-    <path d="M46 83 Q59 94 72 83" stroke="#1A0A05" strokeWidth="3" fill="none" strokeLinecap="round" />
-    {/* Rosy cheeks */}
-    <ellipse cx="28" cy="78" rx="11" ry="7.5" fill="#FFB8A2" opacity="0.42" />
-    <ellipse cx="90" cy="78" rx="11" ry="7.5" fill="#FFB8A2" opacity="0.42" />
-    {/* Front paws */}
-    <ellipse cx="42" cy="133" rx="16" ry="9" fill="white" opacity="0.88" />
-    <ellipse cx="76" cy="133" rx="16" ry="9" fill="white" opacity="0.88" />
-  </svg>
-);
 
 const SectionHeader = ({ title, emoji, onMore }) => (
   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
@@ -177,9 +142,23 @@ const HomePage = () => {
             overflow: 'hidden',
           }}
         >
-          <Box sx={{ position: 'absolute', right: -8, bottom: -6, opacity: 0.92 }}>
-            <CuteDog />
-          </Box>
+          <Box
+            component="img"
+            src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&q=80"
+            alt=""
+            sx={{
+              position: 'absolute',
+              right: -5,
+              bottom: -8,
+              height: 145,
+              width: 'auto',
+              objectFit: 'contain',
+              objectPosition: 'bottom',
+              mixBlendMode: 'multiply',
+              userSelect: 'none',
+              pointerEvents: 'none',
+            }}
+          />
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, mb: 0.5 }}>
             Re:born과 함께
           </Typography>
