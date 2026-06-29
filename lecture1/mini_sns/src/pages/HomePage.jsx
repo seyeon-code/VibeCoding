@@ -14,28 +14,42 @@ import PostCard from '../components/common/PostCard.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
 const HeartPaw = () => (
-  <Box sx={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 32, mr: 0.25 }}>
-    <svg width="36" height="32" viewBox="0 0 36 32" fill="none" style={{ position: 'absolute', top: 0, left: 0 }}>
+  <Box sx={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', mr: 0.25 }}>
+    <svg width="38" height="34" viewBox="0 0 38 34" fill="none">
       <defs>
         <radialGradient id="mhGrad" cx="50%" cy="38%" r="62%">
           <stop offset="0%" stopColor="#FFE8DF" />
           <stop offset="100%" stopColor="#FFCDB8" />
         </radialGradient>
+        <radialGradient id="mhPad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#FFBDAD" />
+          <stop offset="100%" stopColor="#FF9A82" />
+        </radialGradient>
+        <radialGradient id="mhToe" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#FFD0BE" />
+          <stop offset="100%" stopColor="#FFB09A" />
+        </radialGradient>
       </defs>
+      {/* 하트 배경 */}
       <path
-        d="M18,29 C10,22 2,18 2,11 C2,6 6,2.5 11,2.5 C13.5,2.5 15.5,4.5 18,7 C20.5,4.5 22.5,2.5 25,2.5 C30,2.5 34,6 34,11 C34,18 26,22 18,29 Z"
+        d="M19,32 C11,25 2,20 2,12 C2,7 6,3 11,3 C13.5,3 16,5 19,8 C22,5 24.5,3 27,3 C32,3 36,7 36,12 C36,20 27,25 19,32 Z"
         fill="url(#mhGrad)"
       />
+      {/* 연속선 루프 */}
       <path
-        d="M18,7 C18,7 16.5,4 16,2.2 C15.5,0.8 18.5,0.4 19.5,2 C20.2,3.2 19.2,5.2 18,7"
-        fill="none"
-        stroke="#FFAA8A"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        opacity="0.65"
+        d="M19,8 C19,8 17.5,5 17,3.2 C16.5,1.5 19.5,1 20.5,2.8 C21.2,4 20.5,6 19,8"
+        fill="none" stroke="#FFAA8A" strokeWidth="1.3" strokeLinecap="round" opacity="0.6"
       />
+      {/* 발바닥 (로그인과 동일 스타일, 축소+회전) */}
+      <g transform="translate(19,20) scale(0.72) rotate(-12) translate(-19,-20)">
+        <ellipse cx="11" cy="16" rx="3.2" ry="3.6" fill="url(#mhToe)" />
+        <ellipse cx="16" cy="12.5" rx="3.5" ry="4" fill="url(#mhToe)" />
+        <ellipse cx="22" cy="12.5" rx="3.5" ry="4" fill="url(#mhToe)" />
+        <ellipse cx="27" cy="16" rx="3.2" ry="3.6" fill="url(#mhToe)" />
+        <ellipse cx="19" cy="22.5" rx="8" ry="7" fill="url(#mhPad)" />
+        <ellipse cx="16" cy="20" rx="3" ry="2.4" fill="white" opacity="0.25" />
+      </g>
     </svg>
-    <Typography component="span" sx={{ fontSize: '0.75rem', position: 'relative', zIndex: 1, lineHeight: 1, mt: '2px' }}>🐾</Typography>
   </Box>
 );
 
@@ -119,7 +133,7 @@ const HomePage = () => {
         {/* 히어로 배너 */}
         <Box
           sx={{
-            borderRadius: 2,
+            borderRadius: '20px',
             background: 'linear-gradient(135deg, #FFB8A2 0%, #FF8C69 100%)',
             p: 3,
             mb: 4,
@@ -190,9 +204,9 @@ const HomePage = () => {
                     flexShrink: 0,
                     cursor: 'pointer',
                     bgcolor: 'background.paper',
-                    borderRadius: '12px',
+                    borderRadius: '20px',
                     overflow: 'hidden',
-                    boxShadow: '0 2px 12px rgba(255,184,162,0.18)',
+                    boxShadow: '0 4px 16px rgba(255,184,162,0.18)',
                     transition: 'transform 0.15s',
                     '&:active': { transform: 'scale(0.97)' },
                   }}
@@ -319,7 +333,7 @@ const HomePage = () => {
         {!user && (
           <Box
             sx={{
-              borderRadius: 3,
+              borderRadius: '20px',
               bgcolor: '#FFF0EA',
               border: '1.5px solid #FFD4C7',
               p: 2.5,
