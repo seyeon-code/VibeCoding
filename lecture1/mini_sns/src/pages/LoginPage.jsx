@@ -8,6 +8,61 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
+const PawIllustration = () => (
+  <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#FFE3D9" />
+        <stop offset="100%" stopColor="#FFD0BE" />
+      </radialGradient>
+      <radialGradient id="mainPad" cx="40%" cy="35%" r="65%">
+        <stop offset="0%" stopColor="#FFBDAD" />
+        <stop offset="100%" stopColor="#FF9A82" />
+      </radialGradient>
+      <radialGradient id="toePad" cx="40%" cy="35%" r="65%">
+        <stop offset="0%" stopColor="#FFD0BE" />
+        <stop offset="100%" stopColor="#FFB09A" />
+      </radialGradient>
+      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#FFB8A2" floodOpacity="0.35" />
+      </filter>
+    </defs>
+
+    {/* 배경 원 */}
+    <circle cx="65" cy="65" r="58" fill="url(#bgGrad)" />
+
+    {/* 작은 하트들 */}
+    <text x="15" y="32" fontSize="13" opacity="0.7">💗</text>
+    <text x="95" y="26" fontSize="10" opacity="0.6">💕</text>
+    <text x="103" y="92" fontSize="12" opacity="0.6">✨</text>
+    <text x="10" y="95" fontSize="10" opacity="0.55">✨</text>
+
+    {/* 발바닥 그룹 */}
+    <g filter="url(#softShadow)" transform="translate(65,68) rotate(-12) translate(-65,-68)">
+      {/* 위쪽 발가락 4개 */}
+      <ellipse cx="38" cy="44" rx="10" ry="11.5" fill="url(#toePad)" />
+      <ellipse cx="55" cy="33" rx="11" ry="12.5" fill="url(#toePad)" />
+      <ellipse cx="75" cy="33" rx="11" ry="12.5" fill="url(#toePad)" />
+      <ellipse cx="92" cy="44" rx="10" ry="11.5" fill="url(#toePad)" />
+
+      {/* 발바닥 메인 */}
+      <ellipse cx="65" cy="74" rx="26" ry="23" fill="url(#mainPad)" />
+
+      {/* 발가락 내부 하이라이트 */}
+      <ellipse cx="36" cy="41" rx="4.5" ry="5" fill="white" opacity="0.3" />
+      <ellipse cx="53" cy="30" rx="5" ry="5.5" fill="white" opacity="0.3" />
+      <ellipse cx="73" cy="30" rx="5" ry="5.5" fill="white" opacity="0.3" />
+      <ellipse cx="90" cy="41" rx="4.5" ry="5" fill="white" opacity="0.3" />
+
+      {/* 메인 패드 하이라이트 */}
+      <ellipse cx="56" cy="66" rx="10" ry="8" fill="white" opacity="0.2" />
+
+      {/* 메인 패드 안 작은 하트 */}
+      <text x="57" y="79" fontSize="14" fill="white" opacity="0.55" fontFamily="sans-serif">♡</text>
+    </g>
+  </svg>
+);
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const { signIn, signUp, user } = useAuth();
@@ -70,9 +125,11 @@ const LoginPage = () => {
       }}
     >
       {/* 로고 영역 */}
-      <Box sx={{ textAlign: 'center', mb: 5 }}>
-        <Box sx={{ fontSize: 72, lineHeight: 1, mb: 1 }}>🐾</Box>
-        <Typography variant="h1" sx={{ fontWeight: 800, color: '#E8806A', letterSpacing: '-1px', fontSize: '2.5rem' }}>
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Box sx={{ display: 'inline-block', mb: 0.5 }}>
+          <PawIllustration />
+        </Box>
+        <Typography variant="h1" sx={{ fontWeight: 800, color: '#E8806A', letterSpacing: '-1px', fontSize: '2.5rem', mt: -1 }}>
           Re:born
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
