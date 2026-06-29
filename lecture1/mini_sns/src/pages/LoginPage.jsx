@@ -66,7 +66,7 @@ const PawIllustration = () => (
     <text x="10" y="102" fontSize="9" opacity="0.48">✨</text>
 
     {/* 발바닥 그룹 */}
-    <g filter="url(#pawShadow)" transform="translate(70,72) rotate(-12) translate(-70,-72)">
+    <g filter="url(#pawShadow)" transform="translate(70,72) scale(0.78) rotate(-12) translate(-70,-72)">
       <ellipse cx="42" cy="52" rx="10" ry="11.5" fill="url(#toePad)" />
       <ellipse cx="59" cy="40" rx="11" ry="12.5" fill="url(#toePad)" />
       <ellipse cx="80" cy="40" rx="11" ry="12.5" fill="url(#toePad)" />
