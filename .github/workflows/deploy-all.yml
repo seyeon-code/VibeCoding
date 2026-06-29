@@ -7,6 +7,7 @@ on:
     paths:
       - 'lecture1/my-community/**'
       - 'lecture1/my-portfolio/**'
+      - 'lecture1/mini_sns/**'
       - '.github/workflows/deploy-all.yml'
   workflow_dispatch:
 
@@ -49,10 +50,22 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
+      - name: Install & Build mini_sns (Re:born)
+        run: |
+          npm install
+          npm run build
+        working-directory: lecture1/mini_sns
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_UNSPLASH_ACCESS_KEY: ${{ secrets.VITE_UNSPLASH_ACCESS_KEY }}
+
       - name: Combine builds
         run: |
           mkdir -p lecture1/my-community/dist/portfolio
           cp -r lecture1/my-portfolio/dist/. lecture1/my-community/dist/portfolio/
+          mkdir -p lecture1/my-community/dist/mini_sns
+          cp -r lecture1/mini_sns/dist/. lecture1/my-community/dist/mini_sns/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
