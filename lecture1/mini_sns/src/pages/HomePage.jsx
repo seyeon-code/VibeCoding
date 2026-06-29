@@ -53,11 +53,94 @@ const HeartPaw = () => (
   </Box>
 );
 
-const SectionHeader = ({ title, emoji, onMore }) => (
+const CuteDog = () => (
+  <svg width="118" height="138" viewBox="0 0 118 138" fill="none">
+    {/* Left floppy ear */}
+    <ellipse cx="23" cy="58" rx="18" ry="27" fill="#FFE8DE" transform="rotate(-22 23 58)" />
+    <ellipse cx="23" cy="61" rx="11" ry="18" fill="#FFCDB8" transform="rotate(-22 23 61)" />
+    {/* Right floppy ear */}
+    <ellipse cx="95" cy="58" rx="18" ry="27" fill="#FFE8DE" transform="rotate(22 95 58)" />
+    <ellipse cx="95" cy="61" rx="11" ry="18" fill="#FFCDB8" transform="rotate(22 95 61)" />
+    {/* Body */}
+    <ellipse cx="59" cy="114" rx="37" ry="30" fill="white" opacity="0.9" />
+    {/* Head */}
+    <circle cx="59" cy="67" r="40" fill="white" opacity="0.95" />
+    {/* Fluffy forehead tuft */}
+    <ellipse cx="59" cy="33" rx="24" ry="17" fill="white" opacity="0.65" />
+    {/* Left eye */}
+    <circle cx="43" cy="61" r="9" fill="#1A0A05" />
+    <circle cx="45.8" cy="58.2" r="3.6" fill="white" />
+    <circle cx="44" cy="63" r="1.4" fill="white" opacity="0.45" />
+    {/* Right eye */}
+    <circle cx="75" cy="61" r="9" fill="#1A0A05" />
+    <circle cx="77.8" cy="58.2" r="3.6" fill="white" />
+    <circle cx="76" cy="63" r="1.4" fill="white" opacity="0.45" />
+    {/* Nose */}
+    <ellipse cx="59" cy="75" rx="7" ry="5.5" fill="#1A0A05" />
+    <circle cx="61.5" cy="73" r="2.2" fill="white" opacity="0.5" />
+    {/* Happy smile */}
+    <path d="M46 83 Q59 94 72 83" stroke="#1A0A05" strokeWidth="3" fill="none" strokeLinecap="round" />
+    {/* Rosy cheeks */}
+    <ellipse cx="28" cy="78" rx="11" ry="7.5" fill="#FFB8A2" opacity="0.42" />
+    <ellipse cx="90" cy="78" rx="11" ry="7.5" fill="#FFB8A2" opacity="0.42" />
+    {/* Front paws */}
+    <ellipse cx="42" cy="133" rx="16" ry="9" fill="white" opacity="0.88" />
+    <ellipse cx="76" cy="133" rx="16" ry="9" fill="white" opacity="0.88" />
+  </svg>
+);
+
+const ic = (c) => ({ filter: `drop-shadow(0 2px 5px ${c})`, display: 'block' });
+
+const Icon3DPaw = () => (
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style={ic('rgba(255,120,70,0.32)')}>
+    <rect x="1" y="1" width="28" height="28" rx="9" fill="#FF8C69" />
+    <rect x="1" y="1" width="28" height="15" rx="9" fill="white" opacity="0.2" />
+    <ellipse cx="9" cy="7.5" rx="5.5" ry="3.5" fill="white" opacity="0.18" />
+    <ellipse cx="10" cy="13.5" rx="2.7" ry="3.1" fill="white" opacity="0.93" />
+    <ellipse cx="15" cy="11" rx="3" ry="3.4" fill="white" opacity="0.93" />
+    <ellipse cx="20" cy="13.5" rx="2.7" ry="3.1" fill="white" opacity="0.93" />
+    <ellipse cx="15" cy="20.5" rx="6" ry="5" fill="white" opacity="0.88" />
+  </svg>
+);
+
+const Icon3DHouse = () => (
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style={ic('rgba(60,180,100,0.3)')}>
+    <rect x="1" y="1" width="28" height="28" rx="9" fill="#66BB6A" />
+    <rect x="1" y="1" width="28" height="15" rx="9" fill="white" opacity="0.2" />
+    <ellipse cx="9" cy="7.5" rx="5.5" ry="3.5" fill="white" opacity="0.18" />
+    <path d="M15 6 L23.5 14 H6.5 Z" fill="white" opacity="0.93" />
+    <rect x="10" y="14" width="10" height="9" rx="2" fill="white" opacity="0.88" />
+    <rect x="13" y="17" width="4" height="6" rx="1.2" fill="#66BB6A" opacity="0.75" />
+  </svg>
+);
+
+const Icon3DMagnify = () => (
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style={ic('rgba(70,130,210,0.3)')}>
+    <rect x="1" y="1" width="28" height="28" rx="9" fill="#42A5F5" />
+    <rect x="1" y="1" width="28" height="15" rx="9" fill="white" opacity="0.2" />
+    <ellipse cx="9" cy="7.5" rx="5.5" ry="3.5" fill="white" opacity="0.18" />
+    <circle cx="13.5" cy="14.5" r="6" fill="none" stroke="white" strokeWidth="2.8" opacity="0.93" />
+    <line x1="18" y1="19" x2="23.5" y2="24.5" stroke="white" strokeWidth="2.8" strokeLinecap="round" opacity="0.93" />
+  </svg>
+);
+
+const Icon3DHeart = () => (
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style={ic('rgba(190,100,210,0.3)')}>
+    <rect x="1" y="1" width="28" height="28" rx="9" fill="#BA68C8" />
+    <rect x="1" y="1" width="28" height="15" rx="9" fill="white" opacity="0.2" />
+    <ellipse cx="9" cy="7.5" rx="5.5" ry="3.5" fill="white" opacity="0.18" />
+    <path d="M15 23 C15 23 6 17 6 11 C6 8 8.5 6 11 6 C12.8 6 14.2 7.2 15 9 C15.8 7.2 17.2 6 19 6 C21.5 6 24 8 24 11 C24 17 15 23 15 23 Z" fill="white" opacity="0.9" />
+  </svg>
+);
+
+const SectionHeader = ({ title, icon, onMore }) => (
   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-    <Typography variant="h5" sx={{ fontWeight: 700 }}>
-      {emoji} {title}
-    </Typography>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      {icon}
+      <Typography variant="h5" sx={{ fontWeight: 700 }}>
+        {title}
+      </Typography>
+    </Box>
     {onMore && (
       <Button
         size="small"
@@ -141,7 +224,9 @@ const HomePage = () => {
             overflow: 'hidden',
           }}
         >
-          <Box sx={{ position: 'absolute', right: -10, top: -10, fontSize: 90, opacity: 0.18 }}>🐾</Box>
+          <Box sx={{ position: 'absolute', right: -8, bottom: -6, opacity: 0.92 }}>
+            <CuteDog />
+          </Box>
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, mb: 0.5 }}>
             Re:born과 함께
           </Typography>
@@ -156,7 +241,7 @@ const HomePage = () => {
 
         {/* 추천 입양 동물 */}
         <Box sx={{ mb: 4 }}>
-          <SectionHeader title="입양 신청이 필요해요" emoji="🐾" onMore={() => navigate('/posts?type=animal')} />
+          <SectionHeader title="입양 신청이 필요해요" icon={<Icon3DPaw />} onMore={() => navigate('/posts?type=animal')} />
           {loading ? (
             <HorizontalList>
               {[1, 2, 3].map(i => (
@@ -180,7 +265,7 @@ const HomePage = () => {
 
         {/* 입양 후기 */}
         <Box sx={{ mb: 4 }}>
-          <SectionHeader title="따뜻한 입양 후기" emoji="🏡" onMore={() => navigate('/posts?type=review')} />
+          <SectionHeader title="따뜻한 입양 후기" icon={<Icon3DHouse />} onMore={() => navigate('/posts?type=review')} />
           {loading ? (
             <HorizontalList>
               {[1, 2, 3].map(i => (
@@ -267,7 +352,7 @@ const HomePage = () => {
 
         {/* 주인을 찾아요 */}
         <Box sx={{ mb: 4 }}>
-          <SectionHeader title="우리를 기억해주세요" emoji="🔍" onMore={() => navigate('/posts?type=lost_found')} />
+          <SectionHeader title="우리를 기억해주세요" icon={<Icon3DMagnify />} onMore={() => navigate('/posts?type=lost_found')} />
           {loading ? (
             <HorizontalList>
               {[1, 2, 3].map(i => (
@@ -287,7 +372,7 @@ const HomePage = () => {
 
         {/* 봉사활동 */}
         <Box sx={{ mb: 4 }}>
-          <SectionHeader title="봉사활동 모집 중" emoji="💝" onMore={() => navigate('/posts?type=volunteer')} />
+          <SectionHeader title="봉사활동 모집 중" icon={<Icon3DHeart />} onMore={() => navigate('/posts?type=volunteer')} />
           {loading ? (
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Skeleton variant="rectangular" height={90} sx={{ borderRadius: 2.5 }} />
