@@ -144,19 +144,19 @@ const HomePage = () => {
         >
           <Box
             component="img"
-            src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&q=80"
+            src="https://pngimg.com/uploads/samoyed_dog/samoyed_dog_PNG37.png"
             alt=""
             sx={{
               position: 'absolute',
-              right: -5,
+              right: 0,
               bottom: -8,
-              height: 145,
+              height: 150,
               width: 'auto',
               objectFit: 'contain',
               objectPosition: 'bottom',
-              mixBlendMode: 'multiply',
               userSelect: 'none',
               pointerEvents: 'none',
+              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))',
             }}
           />
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, mb: 0.5 }}>
