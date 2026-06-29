@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box, Typography, TextField, Button, Tab, Tabs,
@@ -10,7 +10,11 @@ import { useAuth } from '../contexts/AuthContext.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, user } = useAuth();
+
+  useEffect(() => {
+    if (user) navigate('/', { replace: true });
+  }, [user]);
   const [tab, setTab] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -27,6 +31,7 @@ const LoginPage = () => {
       if (tab === 0) {
         const { error: err } = await signIn(form.email, form.password);
         if (err) throw err;
+        sessionStorage.removeItem('reborn_guest');
         navigate('/');
       } else {
         if (!form.displayName.trim()) throw new Error('닉네임을 입력해주세요.');
@@ -181,7 +186,10 @@ const LoginPage = () => {
       {/* 둘러보기 버튼 */}
       <Button
         variant="text"
-        onClick={() => navigate('/')}
+        onClick={() => {
+          sessionStorage.setItem('reborn_guest', '1');
+          navigate('/');
+        }}
         sx={{ mt: 3, color: 'text.secondary', fontSize: '0.85rem' }}
       >
         로그인 없이 둘러보기 →

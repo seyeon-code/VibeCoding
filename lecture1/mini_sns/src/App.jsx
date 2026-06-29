@@ -9,6 +9,20 @@ import WritePostPage from './pages/WritePostPage.jsx';
 import MyPage from './pages/MyPage.jsx';
 import { CircularProgress, Box } from '@mui/material';
 
+const AuthGuard = ({ children }) => {
+  const { user, loading } = useAuth();
+  if (loading) return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100dvh' }}>
+      <CircularProgress sx={{ color: '#FFB8A2' }} />
+    </Box>
+  );
+  // 로그인 or 둘러보기(guest) 선택한 경우 접근 허용
+  if (!user && !sessionStorage.getItem('reborn_guest')) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return (
@@ -24,7 +38,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route element={<AppLayout />}>
+        <Route element={<AuthGuard><AppLayout /></AuthGuard>}>
           <Route path="/" element={<HomePage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
@@ -35,7 +49,7 @@ function App() {
             <ProtectedRoute><MyPage /></ProtectedRoute>
           } />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </HashRouter>
   );
