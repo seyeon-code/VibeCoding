@@ -157,19 +157,19 @@ const HomePage = () => {
                   key={post.id}
                   onClick={() => navigate(`/posts/${post.id}`)}
                   sx={{
-                    width: 200,
+                    width: 210,
                     flexShrink: 0,
                     cursor: 'pointer',
                     bgcolor: 'background.paper',
-                    borderRadius: 3,
+                    borderRadius: '12px',
                     overflow: 'hidden',
-                    boxShadow: '0 4px 16px rgba(255,184,162,0.18)',
+                    boxShadow: '0 2px 12px rgba(255,184,162,0.18)',
                     transition: 'transform 0.15s',
                     '&:active': { transform: 'scale(0.97)' },
                   }}
                 >
                   {/* 4:3 비율 이미지 */}
-                  <Box sx={{ width: '100%', paddingTop: '75%', position: 'relative', overflow: 'hidden', bgcolor: '#FFE3D9' }}>
+                  <Box sx={{ width: '100%', paddingTop: '72%', position: 'relative', overflow: 'hidden', bgcolor: '#FFE3D9' }}>
                     {post.image_url && (
                       <Box
                         component="img"
@@ -189,21 +189,21 @@ const HomePage = () => {
                     </Box>
                   </Box>
                   {/* 텍스트 영역 */}
-                  <Box sx={{ p: 1.5 }}>
+                  <Box sx={{ px: 1.5, pt: 1.25, pb: 1.5 }}>
                     <Typography
                       variant="body2"
-                      sx={{ fontWeight: 700, mb: 0.5, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                      sx={{ fontWeight: 700, mb: 0.5, lineHeight: 1.45, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
                     >
                       {post.title || post.caption}
                     </Typography>
                     <Typography
                       variant="caption"
                       color="text.secondary"
-                      sx={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.4 }}
+                      sx={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.45 }}
                     >
                       {post.caption}
                     </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 1.25 }}>
                       <Avatar sx={{ width: 16, height: 16, fontSize: '0.55rem' }}>
                         {post.reborn_users?.display_name?.[0] || '익'}
                       </Avatar>
