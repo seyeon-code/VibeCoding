@@ -61,7 +61,7 @@ const PostsPage = () => {
   return (
     <Box>
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
-        <Toolbar sx={{ minHeight: 56 }}>
+        <Toolbar sx={{ minHeight: 56, justifyContent: 'center' }}>
           <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
             유기동물 이야기
           </Typography>

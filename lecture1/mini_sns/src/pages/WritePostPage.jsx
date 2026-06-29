@@ -103,22 +103,24 @@ const WritePostPage = () => {
   return (
     <Box>
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
-        <Toolbar sx={{ minHeight: 56, justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Toolbar sx={{ minHeight: 56, position: 'relative', justifyContent: 'center' }}>
+          <Box sx={{ position: 'absolute', left: 4 }}>
             <IconButton edge="start" onClick={() => navigate(-1)}>
               <ArrowBackIosNewRoundedIcon sx={{ fontSize: 20 }} />
             </IconButton>
-            <Typography variant="h6" sx={{ ml: 1 }}>게시물 작성</Typography>
           </Box>
-          <Button
-            variant="contained"
-            size="small"
-            onClick={handleSubmit}
-            disabled={submitting}
-            sx={{ borderRadius: 20, px: 2.5 }}
-          >
-            {submitting ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : '게시'}
-          </Button>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>게시물 작성</Typography>
+          <Box sx={{ position: 'absolute', right: 8 }}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={handleSubmit}
+              disabled={submitting}
+              sx={{ borderRadius: 20, px: 2.5 }}
+            >
+              {submitting ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : '게시'}
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
 

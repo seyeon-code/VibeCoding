@@ -93,11 +93,13 @@ const MyPage = () => {
   return (
     <Box>
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
-        <Toolbar sx={{ minHeight: 56, justifyContent: 'space-between' }}>
+        <Toolbar sx={{ minHeight: 56, position: 'relative', justifyContent: 'center' }}>
           <Typography variant="h5" sx={{ fontWeight: 700 }}>마이페이지</Typography>
-          <IconButton onClick={handleLogout} size="small">
-            <LogoutRoundedIcon sx={{ color: 'text.secondary', fontSize: 22 }} />
-          </IconButton>
+          <Box sx={{ position: 'absolute', right: 8 }}>
+            <IconButton onClick={handleLogout} size="small">
+              <LogoutRoundedIcon sx={{ color: 'text.secondary', fontSize: 22 }} />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
 

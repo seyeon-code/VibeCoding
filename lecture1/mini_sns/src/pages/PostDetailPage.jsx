@@ -126,16 +126,20 @@ const PostDetailPage = () => {
     <Box sx={{ pb: 10 }}>
       {/* 앱바 */}
       <AppBar elevation={0} position="sticky" sx={{ top: 0, zIndex: 100 }}>
-        <Toolbar sx={{ minHeight: 56 }}>
-          <IconButton edge="start" onClick={() => navigate(-1)}>
-            <ArrowBackIosNewRoundedIcon sx={{ fontSize: 20 }} />
-          </IconButton>
-          <Typography variant="h6" sx={{ flex: 1, ml: 1 }}>
+        <Toolbar sx={{ minHeight: 56, position: 'relative', justifyContent: 'center' }}>
+          <Box sx={{ position: 'absolute', left: 4 }}>
+            <IconButton edge="start" onClick={() => navigate(-1)}>
+              <ArrowBackIosNewRoundedIcon sx={{ fontSize: 20 }} />
+            </IconButton>
+          </Box>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
             {isAnimal ? '입양 안내' : isReview ? '입양 후기' : isVolunteer ? '봉사활동' : '주인 찾기'}
           </Typography>
-          <IconButton onClick={handleShare}>
-            <ShareRoundedIcon sx={{ fontSize: 20 }} />
-          </IconButton>
+          <Box sx={{ position: 'absolute', right: 4 }}>
+            <IconButton onClick={handleShare}>
+              <ShareRoundedIcon sx={{ fontSize: 20 }} />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
 
