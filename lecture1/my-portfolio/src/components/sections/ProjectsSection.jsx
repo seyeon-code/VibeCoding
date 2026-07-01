@@ -10,20 +10,36 @@ const ProjectsSection = () => {
   return (
     <Box
       sx={{
-        bgcolor: 'var(--color-bg-secondary)',
+        background: 'var(--gradient-soft)',
         borderBottom: '1px solid var(--color-border)',
         py: { xs: 8, md: 10 },
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <Container maxWidth="lg">
+      {/* 우측 상단 장식 */}
+      <Box sx={{
+        position: 'absolute', top: -50, right: -50,
+        width: 220, height: 220, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(91,184,238,0.13) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+      <Box sx={{
+        position: 'absolute', bottom: -40, left: -40,
+        width: 180, height: 180, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(155,143,232,0.13) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <Container maxWidth="lg" sx={{ position: 'relative' }}>
         <Chip
           label="🔍 Projects"
           size="small"
           sx={{
             mb: 3,
-            bgcolor: 'var(--color-accent-mint)',
-            color: 'var(--color-text-on-dark)',
+            bgcolor: 'var(--color-accent-purple)',
+            color: '#fff',
             fontWeight: 600,
           }}
         />
@@ -63,11 +79,12 @@ const ProjectsSection = () => {
             py: 1.5,
             borderRadius: '24px',
             fontWeight: 600,
-            borderColor: 'primary.main',
-            color: 'primary.main',
+            borderColor: 'secondary.main',
+            color: 'secondary.main',
             '&:hover': {
-              bgcolor: 'rgba(30,159,217,0.07)',
-              borderColor: 'primary.dark',
+              bgcolor: 'rgba(155,143,232,0.08)',
+              borderColor: 'secondary.dark',
+              color: 'secondary.dark',
             },
           }}
         >

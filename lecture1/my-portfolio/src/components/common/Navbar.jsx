@@ -15,7 +15,13 @@ const Navbar = () => {
           <Typography
             variant="h6"
             fontWeight={700}
-            sx={{ color: 'primary.main', letterSpacing: 1 }}
+            sx={{
+              letterSpacing: 1,
+              background: 'var(--gradient-primary)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
           >
             My Portfolio
           </Typography>
@@ -31,13 +37,15 @@ const Navbar = () => {
                   fontWeight: 500,
                   borderRadius: '20px',
                   px: 2,
+                  position: 'relative',
                   '&.active': {
-                    color: 'primary.main',
-                    backgroundColor: 'rgba(217, 59, 45, 0.08)',
+                    color: 'secondary.main',
+                    backgroundColor: 'rgba(155,143,232,0.1)',
+                    fontWeight: 700,
                   },
                   '&:hover': {
                     color: 'primary.main',
-                    backgroundColor: 'rgba(217, 59, 45, 0.06)',
+                    backgroundColor: 'rgba(91,184,238,0.07)',
                   },
                 }}
               >

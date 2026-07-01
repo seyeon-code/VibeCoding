@@ -7,24 +7,34 @@ const AboutSection = () => {
   return (
     <Box
       sx={{
-        bgcolor: 'var(--color-bg-secondary)',
+        bgcolor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border)',
         py: { xs: 8, md: 10 },
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <Container maxWidth="md">
+      {/* 연보라 장식 */}
+      <Box sx={{
+        position: 'absolute', top: -40, left: '50%', transform: 'translateX(-50%)',
+        width: 500, height: 180, borderRadius: '50%',
+        background: 'radial-gradient(ellipse, rgba(155,143,232,0.1) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <Container maxWidth="md" sx={{ position: 'relative' }}>
         <Chip
-          label="About Me Section"
+          label="🏡 About Me"
           size="small"
           sx={{
             mb: 3,
-            bgcolor: 'var(--color-bg-peach)',
-            color: 'var(--color-text-on-dark)',
+            bgcolor: 'var(--color-accent-purple)',
+            color: '#fff',
             fontWeight: 600,
           }}
         />
-        <Typography variant="h3" fontWeight={700} sx={{ mb: 2 }}>
+        <Typography variant="h3" fontWeight={700} sx={{ mb: 2, color: 'text.primary' }}>
           여기는 About Me 섹션입니다.
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4, lineHeight: 1.8 }}>

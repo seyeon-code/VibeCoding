@@ -14,16 +14,26 @@ const SkillTreeSection = () => {
         borderBottom: '1px solid var(--color-border)',
         py: { xs: 8, md: 10 },
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <Container maxWidth="md">
+      {/* 배경 장식 */}
+      <Box sx={{
+        position: 'absolute', top: '50%', right: -60, transform: 'translateY(-50%)',
+        width: 200, height: 200, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(155,143,232,0.12) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <Container maxWidth="md" sx={{ position: 'relative' }}>
         <Chip
-          label="Skill Tree Section"
+          label="⚡ Skills"
           size="small"
           sx={{
             mb: 3,
-            bgcolor: 'var(--color-accent)',
-            color: 'var(--color-text-primary)',
+            bgcolor: 'var(--color-primary)',
+            color: '#fff',
             fontWeight: 600,
           }}
         />
@@ -34,8 +44,8 @@ const SkillTreeSection = () => {
           기술 스택을 트리나 프로그레스바로 시각화할 예정입니다.
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, textAlign: 'left' }}>
-          {SKILLS.map(({ name, value }) => (
-            <Card key={name} sx={{ bgcolor: 'var(--color-bg-secondary)' }}>
+          {SKILLS.map(({ name, value }, idx) => (
+            <Card key={name} sx={{ bgcolor: idx % 2 === 0 ? 'var(--color-bg-secondary)' : 'var(--color-bg-subtle)' }}>
               <CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                   <Typography variant="body2" fontWeight={600}>
@@ -52,7 +62,11 @@ const SkillTreeSection = () => {
                     height: 8,
                     borderRadius: 4,
                     bgcolor: 'var(--color-border)',
-                    '& .MuiLinearProgress-bar': { bgcolor: 'primary.main' },
+                    '& .MuiLinearProgress-bar': {
+                      background: idx % 2 === 0
+                        ? 'var(--color-primary)'
+                        : 'var(--color-accent-purple)',
+                    },
                   }}
                 />
               </CardContent>
