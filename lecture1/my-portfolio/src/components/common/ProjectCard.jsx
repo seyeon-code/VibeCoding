@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Box, Card, CardActions, Button, Chip, Typography, Skeleton } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -19,10 +19,92 @@ const TECH_STYLES = {
 
 const getTechStyle = (tech) => TECH_STYLES[tech] || { bg: '#F0F4F8', color: '#666666' };
 
-const ProjectCard = ({ title, description, tech_stack = [], thumbnail_url, detail_url, github_url }) => {
+const DESKTOP_W = 1280;
+
+// 실제 사이트를 iframe으로 렌더링 후 축소 표시
+const LivePreview = ({ url, title, description, hovered }) => {
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(0.25);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setScale(el.offsetWidth / DESKTOP_W);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <Box
+      ref={containerRef}
+      sx={{ position: 'absolute', inset: 0, overflow: 'hidden', bgcolor: '#fff' }}
+    >
+      {/* 로딩 중 스켈레톤 */}
+      {!loaded && (
+        <Skeleton
+          variant="rectangular"
+          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+        />
+      )}
+
+      {/* 라이브 iframe — 실제 사이트를 축소해서 표시 */}
+      <iframe
+        src={url}
+        title={title}
+        scrolling="no"
+        onLoad={() => setLoaded(true)}
+        style={{
+          width: `${DESKTOP_W}px`,
+          height: `${DESKTOP_W}px`,
+          border: 'none',
+          display: 'block',
+          transformOrigin: 'top left',
+          transform: `scale(${scale * (hovered ? 1.06 : 1)})`,
+          transition: 'transform 0.4s ease',
+          pointerEvents: 'none',
+          opacity: loaded ? 1 : 0,
+        }}
+      />
+
+      {/* 호버 오버레이: 검정 반투명 + 흰 글씨 */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          bgcolor: 'rgba(0,0,0,0.55)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          px: 2,
+          opacity: hovered ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+          pointerEvents: 'none',
+        }}
+      >
+        <Typography
+          fontWeight={700}
+          textAlign="center"
+          sx={{ color: 'white', fontSize: { xs: '0.95rem', sm: '1.05rem' }, mb: 1, lineHeight: 1.4 }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          textAlign="center"
+          sx={{ color: 'rgba(255,255,255,0.88)', fontSize: { xs: '0.78rem', sm: '0.85rem' }, lineHeight: 1.6 }}
+        >
+          {description}
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
+
+const ProjectCard = ({ title, description, tech_stack = [], detail_url, github_url }) => {
   const [hovered, setHovered] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   return (
     <Card
@@ -41,7 +123,7 @@ const ProjectCard = ({ title, description, tech_stack = [], thumbnail_url, detai
         },
       }}
     >
-      {/* 썸네일 영역 - 1:1 비율 */}
+      {/* 썸네일 - 1:1 비율 라이브 미리보기 */}
       <Box
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -50,98 +132,16 @@ const ProjectCard = ({ title, description, tech_stack = [], thumbnail_url, detai
           position: 'relative',
           width: '100%',
           paddingBottom: '100%',
-          overflow: 'hidden',
-          bgcolor: 'var(--color-bg-secondary)',
           cursor: 'pointer',
+          overflow: 'hidden',
         }}
       >
-        {/* 스켈레톤 */}
-        {!imgLoaded && !imgError && (
-          <Skeleton
-            variant="rectangular"
-            sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-          />
-        )}
-
-        {/* 그라디언트 폴백 */}
-        {imgError && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0, left: 0, width: '100%', height: '100%',
-              background: 'linear-gradient(135deg, #1E9FD9 0%, #2DC890 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Typography variant="h3" sx={{ color: 'white', fontWeight: 700, userSelect: 'none' }}>
-              {title?.charAt(0) ?? '?'}
-            </Typography>
-          </Box>
-        )}
-
-        {/* 스크린샷 이미지 - 호버 시 확대 */}
-        {!imgError && (
-          <Box
-            component="img"
-            src={thumbnail_url}
-            alt={title}
-            onLoad={() => setImgLoaded(true)}
-            onError={() => { setImgLoaded(true); setImgError(true); }}
-            sx={{
-              position: 'absolute',
-              top: 0, left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'top center',
-              opacity: imgLoaded ? 1 : 0,
-              transform: hovered ? 'scale(1.06)' : 'scale(1)',
-              transition: 'transform 0.4s ease, opacity 0.3s ease',
-            }}
-          />
-        )}
-
-        {/* 호버 오버레이: 검정 반투명 + 흰 글씨 */}
-        <Box
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            bgcolor: 'rgba(0, 0, 0, 0.55)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            px: 2,
-            opacity: hovered ? 1 : 0,
-            transition: 'opacity 0.3s ease',
-            pointerEvents: 'none',
-          }}
-        >
-          <Typography
-            fontWeight={700}
-            textAlign="center"
-            sx={{
-              color: 'white',
-              fontSize: { xs: '0.95rem', sm: '1.05rem' },
-              mb: 1,
-              lineHeight: 1.4,
-            }}
-          >
-            {title}
-          </Typography>
-          <Typography
-            textAlign="center"
-            sx={{
-              color: 'rgba(255,255,255,0.88)',
-              fontSize: { xs: '0.78rem', sm: '0.85rem' },
-              lineHeight: 1.6,
-            }}
-          >
-            {description}
-          </Typography>
-        </Box>
+        <LivePreview
+          url={detail_url}
+          title={title}
+          description={description}
+          hovered={hovered}
+        />
       </Box>
 
       {/* 기술 스택 */}
@@ -231,7 +231,7 @@ export const ProjectCardSkeleton = () => (
     <Box sx={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
       <Skeleton
         variant="rectangular"
-        sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+        sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
       />
     </Box>
     <Box sx={{ px: 2, pt: 1.5, pb: 1 }}>
