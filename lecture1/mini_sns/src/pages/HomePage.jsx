@@ -8,6 +8,7 @@ import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneR
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import VolunteerActivismRoundedIcon from '@mui/icons-material/VolunteerActivismRounded';
+import samoyedFace from '../assets/samoyed_face.png';
 import { supabase } from '../lib/supabase.js';
 import AnimalCard from '../components/common/AnimalCard.jsx';
 import PostCard from '../components/common/PostCard.jsx';
@@ -142,37 +143,23 @@ const HomePage = () => {
             overflow: 'hidden',
           }}
         >
-          {/* 강아지 얼굴 원형 크롭 */}
+          {/* 강아지 얼굴 */}
           <Box
+            component="img"
+            src={samoyedFace}
+            alt="강아지"
             sx={{
               position: 'absolute',
-              right: 20,
-              bottom: 20,
-              width: 110,
-              height: 110,
-              borderRadius: '50%',
-              overflow: 'hidden',
-              border: '3px solid rgba(255,255,255,0.8)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+              right: 12,
+              bottom: 0,
+              height: 150,
+              width: 'auto',
+              objectFit: 'contain',
               userSelect: 'none',
               pointerEvents: 'none',
+              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.18))',
             }}
-          >
-            <Box
-              component="img"
-              src="https://pngimg.com/uploads/samoyed_dog/samoyed_dog_PNG37.png"
-              alt=""
-              sx={{
-                height: '280%',
-                width: 'auto',
-                position: 'absolute',
-                top: '-18%',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                objectFit: 'contain',
-              }}
-            />
-          </Box>
+          />
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500, mb: 0.5 }}>
             Re:born과 함께
           </Typography>

@@ -180,8 +180,8 @@ const MyPage = () => {
         {loading ? (
           <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0.75 }}>
             {[1, 2, 3, 4, 5, 6].map(i => (
-              <Box key={i} sx={{ aspectRatio: '1/1', borderRadius: 2, overflow: 'hidden' }}>
-                <Box sx={{ width: '100%', height: '100%', bgcolor: '#FFE3D9', borderRadius: 2 }} />
+              <Box key={i} sx={{ aspectRatio: '1/1', borderRadius: '20px', overflow: 'hidden' }}>
+                <Box sx={{ width: '100%', height: '100%', bgcolor: '#FFE3D9', borderRadius: '20px' }} />
               </Box>
             ))}
           </Box>
@@ -204,7 +204,7 @@ const MyPage = () => {
                 onClick={() => navigate(`/posts/${post.id}`)}
                 sx={{
                   aspectRatio: '1/1',
-                  borderRadius: 2,
+                  borderRadius: '20px',
                   overflow: 'hidden',
                   cursor: 'pointer',
                   position: 'relative',
@@ -220,16 +220,16 @@ const MyPage = () => {
                     {typeLabels[post.post_type]}
                   </Box>
                 )}
-                {/* 좋아요 overlay */}
+                {/* 좋아요 badge */}
                 <Box
                   sx={{
-                    position: 'absolute', bottom: 4, right: 4,
+                    position: 'absolute', bottom: 8, right: 8,
                     display: 'flex', alignItems: 'center', gap: 0.25,
-                    bgcolor: 'rgba(0,0,0,0.35)', borderRadius: 6, px: 0.75, py: 0.25,
+                    bgcolor: 'rgba(0,0,0,0.38)', borderRadius: '10px', px: 0.75, py: 0.25,
                   }}
                 >
                   <FavoriteRoundedIcon sx={{ fontSize: 10, color: '#FFB8A2' }} />
-                  <Typography variant="caption" sx={{ color: '#fff', fontSize: '0.6rem', fontWeight: 600 }}>
+                  <Typography variant="caption" sx={{ color: '#fff', fontSize: '0.6rem', fontWeight: 600, lineHeight: 1 }}>
                     {post.likes_count || 0}
                   </Typography>
                 </Box>
