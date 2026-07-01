@@ -19,155 +19,10 @@ const TECH_STYLES = {
 
 const getTechStyle = (tech) => TECH_STYLES[tech] || { bg: '#F0F4F8', color: '#666666' };
 
-const PhoneMockup = ({ src, title, description, hovered, onMouseEnter, onMouseLeave, onClick }) => {
-  const [imgLoaded, setImgLoaded] = useState(false);
-  const [imgError, setImgError] = useState(false);
-
-  return (
-    /* 카드 배경 영역 */
-    <Box
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
-      sx={{
-        position: 'relative',
-        bgcolor: hovered ? 'rgba(0,0,0,0.55)' : '#EBF4FB',
-        transition: 'background-color 0.35s ease',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        py: { xs: 2.5, sm: 3 },
-        minHeight: { xs: 240, sm: 280 },
-        cursor: 'pointer',
-        overflow: 'hidden',
-      }}
-    >
-      {/* 폰 프레임 */}
-      <Box
-        sx={{
-          position: 'relative',
-          zIndex: 1,
-          background: '#1c1c1e',
-          borderRadius: '28px',
-          p: '8px 6px 10px',
-          border: '1.5px solid #3a3a3c',
-          boxShadow: hovered
-            ? '0 20px 50px rgba(0,0,0,0.55)'
-            : '0 12px 32px rgba(0,0,0,0.22)',
-          transform: hovered ? 'scale(1.04) translateY(-4px)' : 'scale(1)',
-          transition: 'transform 0.35s ease, box-shadow 0.35s ease',
-          width: { xs: 130, sm: 150 },
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '8px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '44px',
-            height: '5px',
-            background: '#3a3a3c',
-            borderRadius: '3px',
-          },
-        }}
-      >
-        {/* 스크린 영역 */}
-        <Box
-          sx={{
-            borderRadius: '22px',
-            overflow: 'hidden',
-            width: '100%',
-            aspectRatio: '9/16',
-            bgcolor: '#111',
-            position: 'relative',
-          }}
-        >
-          {/* 스켈레톤 */}
-          {!imgLoaded && !imgError && (
-            <Skeleton
-              variant="rectangular"
-              sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-            />
-          )}
-
-          {/* 그라디언트 폴백 */}
-          {imgError && (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 0, left: 0, width: '100%', height: '100%',
-                background: 'linear-gradient(160deg, #1E9FD9 0%, #2DC890 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Typography variant="h5" sx={{ color: 'white', fontWeight: 700, userSelect: 'none' }}>
-                {title?.charAt(0) ?? '?'}
-              </Typography>
-            </Box>
-          )}
-
-          {/* 실제 스크린샷 */}
-          {!imgError && (
-            <Box
-              component="img"
-              src={src}
-              alt={title}
-              onLoad={() => setImgLoaded(true)}
-              onError={() => { setImgLoaded(true); setImgError(true); }}
-              sx={{
-                position: 'absolute',
-                top: 0, left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'top',
-                opacity: imgLoaded ? 1 : 0,
-                transition: 'opacity 0.3s ease',
-              }}
-            />
-          )}
-        </Box>
-      </Box>
-
-      {/* 호버 텍스트 오버레이 (배경 위 절대 위치) */}
-      <Box
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          pb: 2,
-          px: 2,
-          opacity: hovered ? 1 : 0,
-          transition: 'opacity 0.3s ease',
-          pointerEvents: 'none',
-        }}
-      >
-        <Typography
-          variant="subtitle1"
-          fontWeight={700}
-          textAlign="center"
-          sx={{ color: 'white', mb: 0.5, fontSize: { xs: '0.85rem', sm: '0.95rem' } }}
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="caption"
-          textAlign="center"
-          sx={{ color: 'rgba(255,255,255,0.82)', lineHeight: 1.5, fontSize: { xs: '0.7rem', sm: '0.75rem' } }}
-        >
-          {description}
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
-
 const ProjectCard = ({ title, description, tech_stack = [], thumbnail_url, detail_url, github_url }) => {
   const [hovered, setHovered] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <Card
@@ -186,15 +41,146 @@ const ProjectCard = ({ title, description, tech_stack = [], thumbnail_url, detai
         },
       }}
     >
-      <PhoneMockup
-        src={thumbnail_url}
-        title={title}
-        description={description}
-        hovered={hovered}
+      {/* 썸네일 + 폰 목업 영역 */}
+      <Box
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={() => setHovered((v) => !v)}
-      />
+        sx={{
+          bgcolor: '#EBF4FB',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          py: { xs: 2.5, sm: 3 },
+          minHeight: { xs: 240, sm: 280 },
+          cursor: 'pointer',
+        }}
+      >
+        {/* 폰 프레임 */}
+        <Box
+          sx={{
+            background: '#1c1c1e',
+            borderRadius: '28px',
+            p: '8px 6px 10px',
+            border: '1.5px solid #3a3a3c',
+            boxShadow: '0 12px 32px rgba(0,0,0,0.25)',
+            width: { xs: 130, sm: 150 },
+            position: 'relative',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '8px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '44px',
+              height: '5px',
+              background: '#3a3a3c',
+              borderRadius: '3px',
+            },
+          }}
+        >
+          {/* 스크린 */}
+          <Box
+            sx={{
+              borderRadius: '22px',
+              overflow: 'hidden',
+              width: '100%',
+              aspectRatio: '9/16',
+              bgcolor: '#111',
+              position: 'relative',
+            }}
+          >
+            {/* 스켈레톤 */}
+            {!imgLoaded && !imgError && (
+              <Skeleton
+                variant="rectangular"
+                sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              />
+            )}
+
+            {/* 그라디언트 폴백 */}
+            {imgError && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 0, left: 0, width: '100%', height: '100%',
+                  background: 'linear-gradient(160deg, #1E9FD9 0%, #2DC890 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography variant="h5" sx={{ color: 'white', fontWeight: 700, userSelect: 'none' }}>
+                  {title?.charAt(0) ?? '?'}
+                </Typography>
+              </Box>
+            )}
+
+            {/* 썸네일 이미지 - 호버 시 확대 */}
+            {!imgError && (
+              <Box
+                component="img"
+                src={thumbnail_url}
+                alt={title}
+                onLoad={() => setImgLoaded(true)}
+                onError={() => { setImgLoaded(true); setImgError(true); }}
+                sx={{
+                  position: 'absolute',
+                  top: 0, left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'top',
+                  opacity: imgLoaded ? 1 : 0,
+                  transform: hovered ? 'scale(1.07)' : 'scale(1)',
+                  transition: 'transform 0.4s ease, opacity 0.3s ease',
+                }}
+              />
+            )}
+
+            {/* 호버 오버레이: 검정 반투명 + 흰 글씨 */}
+            <Box
+              sx={{
+                position: 'absolute',
+                inset: 0,
+                bgcolor: 'rgba(0,0,0,0.58)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                px: 1.5,
+                py: 2,
+                opacity: hovered ? 1 : 0,
+                transition: 'opacity 0.3s ease',
+                pointerEvents: 'none',
+              }}
+            >
+              <Typography
+                fontWeight={700}
+                textAlign="center"
+                sx={{
+                  color: 'white',
+                  fontSize: { xs: '0.72rem', sm: '0.8rem' },
+                  lineHeight: 1.4,
+                  mb: 0.75,
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography
+                textAlign="center"
+                sx={{
+                  color: 'rgba(255,255,255,0.85)',
+                  fontSize: { xs: '0.62rem', sm: '0.68rem' },
+                  lineHeight: 1.5,
+                }}
+              >
+                {description}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
 
       {/* 기술 스택 */}
       <Box sx={{ px: 2, pt: 1.5, pb: 1 }}>
