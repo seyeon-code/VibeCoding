@@ -19,7 +19,7 @@ const TECH_STYLES = {
 
 const getTechStyle = (tech) => TECH_STYLES[tech] || { bg: '#F0F4F8', color: '#666666' };
 
-const DESKTOP_W = 1280;
+const DESKTOP_W = 780;
 
 // 실제 사이트를 iframe으로 렌더링 후 축소 표시
 const LivePreview = ({ url, title, description, hovered }) => {
@@ -58,7 +58,7 @@ const LivePreview = ({ url, title, description, hovered }) => {
         onLoad={() => setLoaded(true)}
         style={{
           width: `${DESKTOP_W}px`,
-          height: `${DESKTOP_W}px`,
+          height: `${Math.round(DESKTOP_W * 1.1)}px`,
           border: 'none',
           display: 'block',
           transformOrigin: 'top left',
