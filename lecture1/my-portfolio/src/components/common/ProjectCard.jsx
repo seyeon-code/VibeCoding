@@ -103,8 +103,9 @@ const LivePreview = ({ url, title, description, hovered }) => {
   );
 };
 
-const ProjectCard = ({ title, description, tech_stack = [], detail_url, github_url }) => {
+const ProjectCard = ({ title, description, tech_stack = [], detail_url, github_url, thumbnail_url }) => {
   const [hovered, setHovered] = useState(false);
+  const isStaticThumb = thumbnail_url && /\.(png|jpe?g|webp|gif)(\?.*)?$/i.test(thumbnail_url);
 
   return (
     <Card
@@ -123,11 +124,11 @@ const ProjectCard = ({ title, description, tech_stack = [], detail_url, github_u
         },
       }}
     >
-      {/* 썸네일 - 1:1 비율 라이브 미리보기 */}
+      {/* 썸네일 */}
       <Box
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onClick={() => setHovered((v) => !v)}
+        onClick={() => detail_url && window.open(detail_url, '_blank')}
         sx={{
           position: 'relative',
           width: '100%',
@@ -136,12 +137,49 @@ const ProjectCard = ({ title, description, tech_stack = [], detail_url, github_u
           overflow: 'hidden',
         }}
       >
-        <LivePreview
-          url={detail_url}
-          title={title}
-          description={description}
-          hovered={hovered}
-        />
+        {isStaticThumb ? (
+          <Box sx={{ position: 'absolute', inset: 0, overflow: 'hidden', bgcolor: '#fff' }}>
+            <Box
+              component="img"
+              src={thumbnail_url}
+              alt={title}
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'top center',
+                transform: hovered ? 'scale(1.06)' : 'scale(1)',
+                transition: 'transform 0.4s ease',
+              }}
+            />
+            {/* 호버 오버레이 */}
+            <Box sx={{
+              position: 'absolute', inset: 0,
+              bgcolor: 'rgba(0,0,0,0.52)',
+              display: 'flex', flexDirection: 'column',
+              justifyContent: 'center', alignItems: 'center', px: 2,
+              opacity: hovered ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+              pointerEvents: 'none',
+            }}>
+              <Typography fontWeight={700} textAlign="center"
+                sx={{ color: 'white', fontSize: { xs: '0.95rem', sm: '1.05rem' }, mb: 1, lineHeight: 1.4 }}>
+                {title}
+              </Typography>
+              <Typography textAlign="center"
+                sx={{ color: 'rgba(255,255,255,0.88)', fontSize: { xs: '0.78rem', sm: '0.85rem' }, lineHeight: 1.6 }}>
+                {description}
+              </Typography>
+            </Box>
+          </Box>
+        ) : (
+          <LivePreview
+            url={detail_url}
+            title={title}
+            description={description}
+            hovered={hovered}
+          />
+        )}
       </Box>
 
       {/* 기술 스택 */}
