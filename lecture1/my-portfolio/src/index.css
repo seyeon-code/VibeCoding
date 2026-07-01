@@ -1,64 +1,57 @@
-/* 컬러 팔레트 디자인 시스템 - CSS 변수 */
+/* 컬러 팔레트 — 하늘색→파란색 그라데이션 시스템 */
 :root {
-  /* Primary Colors */
-  --color-primary: #D93B2D;
-  --color-primary-light: #E8614F;
-  --color-primary-dark: #C1302A;
+  /* Primary */
+  --color-primary: #2B9FE0;
+  --color-primary-light: #5BBFF0;
+  --color-primary-dark: #0E7DB5;
 
-  /* Secondary Colors */
-  --color-secondary: #FAF2EC;
-  --color-accent: #C8E04A;
+  /* Secondary / Accent */
+  --color-secondary: #DCF0FB;
+  --color-accent: #5BBFF0;
+  --color-accent-mint: #2DC890;
 
-  /* Background Colors */
-  --color-bg-primary: #FAF2EC;
-  --color-bg-secondary: #FFFFFF;
-  --color-bg-peach: #F0857A;
+  /* Background — 위에서 아래로 하늘색 → 진한 파란색 흐름 */
+  --color-bg-primary: #F0F8FF;
+  --color-bg-secondary: #DCF0FB;
+  --color-bg-subtle: #C5E5F7;
 
-  /* Text Colors */
-  --color-text-primary: #2C2C2C;
-  --color-text-secondary: #888888;
-  --color-text-muted: #AAAAAA;
+  /* Text */
+  --color-text-primary: #0D1F35;
+  --color-text-secondary: #3A6080;
+  --color-text-muted: #7AAAC8;
   --color-text-on-dark: #FFFFFF;
 
-  /* Border / Outline */
-  --color-border: #EDE4DC;
-  --color-border-light: #F5EEE8;
+  /* Border */
+  --color-border: #B0D8F0;
+  --color-border-light: #D4EEF9;
 
-  /* Interactive Colors */
-  --color-button-primary: #D93B2D;
-  --color-button-hover: #C1302A;
-  --color-link: #D93B2D;
-  --color-link-hover: #C1302A;
+  /* Interactive */
+  --color-button-primary: #2B9FE0;
+  --color-button-hover: #0E7DB5;
+  --color-link: #2B9FE0;
+  --color-link-hover: #0E7DB5;
 
   /* Footer */
-  --color-footer-bg: #C1302A;
-  --color-footer-text: #FFFFFF;
+  --color-footer-bg: #0E4D78;
+  --color-footer-text: #DCF0FB;
 }
 
 /* 다크 모드 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg-primary: #1E1512;
-    --color-bg-secondary: #2A1E19;
-    --color-text-primary: #F5EEE8;
-    --color-text-secondary: #C4B5AB;
-    --color-text-muted: #8C7B73;
-    --color-primary: #E04D3F;
-    --color-primary-light: #F06050;
-    --color-primary-dark: #C1302A;
-    --color-border: #3D2D26;
-    --color-border-light: #4A3830;
-  }
-}
-
-/* 고대비 모드 */
-@media (prefers-contrast: high) {
-  :root {
-    --color-text-primary: #000000;
-    --color-text-secondary: #333333;
-    --color-primary: #B02020;
-    --color-bg-primary: #FFFFFF;
-    --color-border: #555555;
+    --color-bg-primary: #071828;
+    --color-bg-secondary: #0D2035;
+    --color-bg-subtle: #132840;
+    --color-text-primary: #E8F4FD;
+    --color-text-secondary: #A0C8E0;
+    --color-text-muted: #5A90B0;
+    --color-primary: #4DB8E8;
+    --color-primary-light: #72CDF0;
+    --color-primary-dark: #2B9FE0;
+    --color-border: #1A3D5C;
+    --color-border-light: #224A6A;
+    --color-footer-bg: #040E18;
+    --color-footer-text: #B8DCEF;
   }
 }
 

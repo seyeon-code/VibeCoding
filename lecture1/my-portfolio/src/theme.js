@@ -4,25 +4,25 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#D93B2D',
-      light: '#E8614F',
-      dark: '#C1302A',
+      main: '#2B9FE0',
+      light: '#5BBFF0',
+      dark: '#0E7DB5',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#C8E04A',
-      contrastText: '#2C2C2C',
+      main: '#2DC890',
+      contrastText: '#FFFFFF',
     },
     background: {
-      default: '#FAF2EC',
-      paper: '#FFFFFF',
+      default: '#F0F8FF',
+      paper: '#DCF0FB',
     },
     text: {
-      primary: '#2C2C2C',
-      secondary: '#888888',
-      disabled: '#AAAAAA',
+      primary: '#0D1F35',
+      secondary: '#3A6080',
+      disabled: '#7AAAC8',
     },
-    divider: '#EDE4DC',
+    divider: '#B0D8F0',
   },
   typography: {
     fontFamily: '"Roboto", sans-serif',
@@ -38,15 +38,17 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          backgroundColor: '#D93B2D',
-          '&:hover': { backgroundColor: '#C1302A' },
+          background: 'linear-gradient(135deg, #2B9FE0 0%, #0E7DB5 100%)',
+          '&:hover': {
+            background: 'linear-gradient(135deg, #1A8FD0 0%, #0A6A9E 100%)',
+          },
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          border: '1px solid #EDE4DC',
+          border: '1px solid #B0D8F0',
           boxShadow: 'none',
         },
       },
@@ -54,8 +56,9 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#FFFFFF',
-          borderBottom: '1px solid #EDE4DC',
+          backgroundColor: 'rgba(240,248,255,0.92)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid #B0D8F0',
         },
       },
     },
