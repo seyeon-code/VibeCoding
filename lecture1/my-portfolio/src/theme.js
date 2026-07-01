@@ -4,25 +4,27 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#2B9FE0',
-      light: '#5BBFF0',
-      dark: '#0E7DB5',
+      main: '#5BB8EE',
+      light: '#84CDEF',
+      dark: '#2E96D4',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#2DC890',
+      main: '#9B8FE8',
+      light: '#BCB4F5',
+      dark: '#7265D0',
       contrastText: '#FFFFFF',
     },
     background: {
-      default: '#F0F8FF',
-      paper: '#DCF0FB',
+      default: '#FFFFFF',
+      paper: '#F2F6FF',
     },
     text: {
-      primary: '#0D1F35',
-      secondary: '#3A6080',
-      disabled: '#7AAAC8',
+      primary: '#1A2640',
+      secondary: '#4A5A7A',
+      disabled: '#8A98B8',
     },
-    divider: '#B0D8F0',
+    divider: '#D0DCF0',
   },
   typography: {
     fontFamily: '"Roboto", sans-serif',
@@ -38,9 +40,20 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          background: 'linear-gradient(135deg, #2B9FE0 0%, #0E7DB5 100%)',
+          background: 'linear-gradient(135deg, #5BB8EE 0%, #9B8FE8 100%)',
+          boxShadow: '0 4px 16px rgba(91,184,238,0.35)',
           '&:hover': {
-            background: 'linear-gradient(135deg, #1A8FD0 0%, #0A6A9E 100%)',
+            background: 'linear-gradient(135deg, #3DA8E0 0%, #7E72DE 100%)',
+            boxShadow: '0 6px 20px rgba(91,184,238,0.45)',
+          },
+        },
+        outlinedPrimary: {
+          borderColor: '#5BB8EE',
+          color: '#5BB8EE',
+          '&:hover': {
+            borderColor: '#9B8FE8',
+            color: '#9B8FE8',
+            backgroundColor: 'rgba(155,143,232,0.06)',
           },
         },
       },
@@ -48,17 +61,26 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          border: '1px solid #B0D8F0',
+          border: '1px solid #D0DCF0',
           boxShadow: 'none',
+          backgroundColor: '#FFFFFF',
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(240,248,255,0.92)',
+          backgroundColor: 'rgba(255,255,255,0.92)',
           backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid #B0D8F0',
+          borderBottom: '1px solid #D0DCF0',
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
         },
       },
     },

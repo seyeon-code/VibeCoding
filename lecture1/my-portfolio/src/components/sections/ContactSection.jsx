@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import {
   Box, Container, Typography, Grid, Card, CardContent,
   TextField, Button, Chip, Avatar, Alert, CircularProgress,
@@ -19,7 +19,7 @@ const CONTACT_INFO = [
     label: 'Email',
     value: 'your.email@gmail.com',
     href: 'mailto:your.email@gmail.com',
-    color: '#1565C0',
+    color: '#5BB8EE',
   },
   {
     icon: <GitHubIcon sx={{ fontSize: 30 }} />,
@@ -40,7 +40,7 @@ const CONTACT_INFO = [
     label: 'Status',
     value: '새로운 기회를 찾고 있어요 ✨',
     href: null,
-    color: '#1E9FD9',
+    color: '#9B8FE8',
   },
 ];
 
@@ -54,7 +54,7 @@ const glassCard = {
   WebkitBackdropFilter: 'blur(24px)',
   border: '1px solid rgba(255, 255, 255, 0.7)',
   borderRadius: '16px',
-  boxShadow: '0 8px 32px rgba(21, 101, 192, 0.12)',
+  boxShadow: '0 8px 32px rgba(91, 184, 238, 0.12)',
   transition: 'all 0.3s ease',
 };
 
@@ -140,7 +140,7 @@ const ContactSection = () => {
   return (
     <Box
       sx={{
-        background: 'linear-gradient(160deg, #FFFFFF 0%, #E3F2FD 30%, #90CAF9 65%, #42A5F5 100%)',
+        background: 'linear-gradient(160deg, #FFFFFF 0%, #EEF6FF 35%, #E8E4FF 70%, #D4C8FF 100%)',
         py: { xs: 10, md: 14 },
         position: 'relative',
         overflow: 'hidden',
@@ -158,9 +158,9 @@ const ContactSection = () => {
             size="small"
             sx={{
               mb: 3,
-              background: 'rgba(21,101,192,0.12)',
-              color: '#1565C0',
-              border: '1px solid rgba(21,101,192,0.25)',
+              background: 'rgba(91,184,238,0.12)',
+              color: '#5BB8EE',
+              border: '1px solid rgba(91,184,238,0.25)',
               fontWeight: 700,
               fontSize: '0.75rem',
               letterSpacing: '0.08em',
@@ -169,13 +169,13 @@ const ContactSection = () => {
           <Typography
             variant="h2"
             fontWeight={800}
-            sx={{ color: '#0D47A1', mb: 2, fontSize: { xs: '2rem', md: '2.75rem' }, lineHeight: 1.2 }}
+            sx={{ color: '#2E96D4', mb: 2, fontSize: { xs: '2rem', md: '2.75rem' }, lineHeight: 1.2 }}
           >
             함께 만들어가요
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: '#1565C0', maxWidth: 520, mx: 'auto', lineHeight: 1.8, fontWeight: 500 }}
+            sx={{ color: '#5BB8EE', maxWidth: 520, mx: 'auto', lineHeight: 1.8, fontWeight: 500 }}
           >
             새로운 프로젝트, 협업 제안, 또는 간단한 인사라도 언제든 환영합니다.
           </Typography>
@@ -199,7 +199,7 @@ const ContactSection = () => {
                     '&:hover': {
                       background: 'rgba(255,255,255,0.65)',
                       transform: 'translateY(-4px)',
-                      boxShadow: `0 16px 40px rgba(21,101,192,0.2)`,
+                      boxShadow: `0 16px 40px rgba(91,184,238,0.2)`,
                     },
                   }),
                 }}
@@ -232,14 +232,14 @@ const ContactSection = () => {
           ))}
         </Grid>
 
-        <Divider sx={{ borderColor: 'rgba(21,101,192,0.15)', mb: { xs: 6, md: 8 } }} />
+        <Divider sx={{ borderColor: 'rgba(91,184,238,0.15)', mb: { xs: 6, md: 8 } }} />
 
         {/* 방명록 섹션 */}
         <Box sx={{ textAlign: 'center', mb: 5 }}>
-          <Typography variant="h4" fontWeight={700} sx={{ color: '#0D47A1', mb: 1 }}>
+          <Typography variant="h4" fontWeight={700} sx={{ color: '#2E96D4', mb: 1 }}>
             방명록
           </Typography>
-          <Typography variant="body2" sx={{ color: '#1976D2', fontWeight: 500 }}>
+          <Typography variant="body2" sx={{ color: '#9B8FE8', fontWeight: 500 }}>
             여기에 흔적을 남겨주세요 👣
           </Typography>
         </Box>
@@ -249,7 +249,7 @@ const ContactSection = () => {
           <Grid size={{ xs: 12, md: 5 }}>
             <Card sx={{ ...glassCard }}>
               <CardContent sx={{ p: 3.5 }}>
-                <Typography variant="subtitle1" fontWeight={700} sx={{ color: '#0D47A1', mb: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Typography variant="subtitle1" fontWeight={700} sx={{ color: '#2E96D4', mb: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
                   <EmojiEmotionsIcon sx={{ color: '#1E9FD9', fontSize: 22 }} />
                   메시지 남기기
                 </Typography>
@@ -273,7 +273,7 @@ const ContactSection = () => {
 
                   {/* 키워드 선택 */}
                   <Box>
-                    <Typography variant="caption" sx={{ color: '#1565C0', mb: 1, display: 'block', fontWeight: 600 }}>
+                    <Typography variant="caption" sx={{ color: '#5BB8EE', mb: 1, display: 'block', fontWeight: 600 }}>
                       방문 목적 (선택)
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.8 }}>
@@ -286,11 +286,11 @@ const ContactSection = () => {
                           sx={{
                             cursor: 'pointer',
                             fontSize: '0.72rem',
-                            background: form.keyword === kw ? 'rgba(21,101,192,0.15)' : 'rgba(255,255,255,0.6)',
-                            color: form.keyword === kw ? '#1255A8' : '#1565C0',
-                            border: form.keyword === kw ? '1px solid rgba(21,101,192,0.5)' : '1px solid rgba(21,101,192,0.2)',
+                            background: form.keyword === kw ? 'rgba(91,184,238,0.15)' : 'rgba(255,255,255,0.6)',
+                            color: form.keyword === kw ? '#2E96D4' : '#5BB8EE',
+                            border: form.keyword === kw ? '1px solid rgba(91,184,238,0.5)' : '1px solid rgba(91,184,238,0.2)',
                             fontWeight: form.keyword === kw ? 700 : 500,
-                            '&:hover': { background: 'rgba(21,101,192,0.1)' },
+                            '&:hover': { background: 'rgba(91,184,238,0.1)' },
                           }}
                         />
                       ))}
@@ -299,7 +299,7 @@ const ContactSection = () => {
 
                   {/* 이모지 선택 */}
                   <Box>
-                    <Typography variant="caption" sx={{ color: '#1565C0', mb: 1, display: 'block', fontWeight: 600 }}>
+                    <Typography variant="caption" sx={{ color: '#5BB8EE', mb: 1, display: 'block', fontWeight: 600 }}>
                       이모지 선택
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.6 }}>
@@ -311,7 +311,7 @@ const ContactSection = () => {
                               width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center',
                               borderRadius: '8px', fontSize: '1.2rem', cursor: 'pointer',
                               background: form.emoji === emoji ? 'rgba(30,159,217,0.15)' : 'rgba(255,255,255,0.5)',
-                              border: form.emoji === emoji ? '2px solid rgba(30,159,217,0.5)' : '1px solid rgba(21,101,192,0.15)',
+                              border: form.emoji === emoji ? '2px solid rgba(30,159,217,0.5)' : '1px solid rgba(91,184,238,0.15)',
                               transition: 'all 0.15s',
                               '&:hover': { background: 'rgba(30,159,217,0.12)', transform: 'scale(1.1)' },
                             }}
@@ -330,9 +330,9 @@ const ContactSection = () => {
                     endIcon={submitting ? <CircularProgress size={16} sx={{ color: 'white' }} /> : <SendIcon />}
                     sx={{
                       mt: 0.5, py: 1.2, fontWeight: 700, borderRadius: '10px',
-                      background: 'linear-gradient(135deg, #1565C0 0%, #1976D2 100%)',
-                      boxShadow: '0 6px 20px rgba(21,101,192,0.35)',
-                      '&:hover': { background: 'linear-gradient(135deg, #0D47A1 0%, #1565C0 100%)', transform: 'translateY(-1px)', boxShadow: '0 10px 24px rgba(21,101,192,0.45)' },
+                      background: 'linear-gradient(135deg, #5BB8EE 0%, #9B8FE8 100%)',
+                      boxShadow: '0 6px 20px rgba(91,184,238,0.35)',
+                      '&:hover': { background: 'linear-gradient(135deg, #2E96D4 0%, #5BB8EE 100%)', transform: 'translateY(-1px)', boxShadow: '0 10px 24px rgba(91,184,238,0.45)' },
                       transition: 'all 0.2s',
                     }}
                   >
@@ -348,13 +348,13 @@ const ContactSection = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {loadingEntries ? (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-                  <CircularProgress sx={{ color: '#1976D2' }} size={32} />
+                  <CircularProgress sx={{ color: '#9B8FE8' }} size={32} />
                 </Box>
               ) : entries.length === 0 ? (
                 <Card sx={{ ...glassCard }}>
                   <CardContent sx={{ py: 6, textAlign: 'center' }}>
                     <Typography sx={{ fontSize: '2.5rem', mb: 1 }}>📭</Typography>
-                    <Typography variant="body2" sx={{ color: '#1565C0', fontWeight: 500 }}>
+                    <Typography variant="body2" sx={{ color: '#5BB8EE', fontWeight: 500 }}>
                       첫 번째 방명록을 남겨주세요!
                     </Typography>
                   </CardContent>
@@ -368,18 +368,18 @@ const ContactSection = () => {
                           sx={{
                             width: 46, height: 46, flexShrink: 0, fontSize: '1.5rem',
                             background: 'rgba(255,255,255,0.8)',
-                            border: '2px solid rgba(21,101,192,0.2)',
+                            border: '2px solid rgba(91,184,238,0.2)',
                           }}
                         >
                           {entry.emoji}
                         </Avatar>
                         <Box sx={{ flex: 1, minWidth: 0 }}>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', mb: 0.6 }}>
-                            <Typography variant="body2" fontWeight={700} sx={{ color: '#0D47A1' }}>
+                            <Typography variant="body2" fontWeight={700} sx={{ color: '#2E96D4' }}>
                               {entry.name}
                             </Typography>
                             {entry.organization && (
-                              <Typography variant="caption" sx={{ color: '#1976D2', background: 'rgba(21,101,192,0.1)', px: 1, py: 0.2, borderRadius: '4px', fontWeight: 600 }}>
+                              <Typography variant="caption" sx={{ color: '#9B8FE8', background: 'rgba(91,184,238,0.1)', px: 1, py: 0.2, borderRadius: '4px', fontWeight: 600 }}>
                                 {entry.organization}
                               </Typography>
                             )}
@@ -387,7 +387,7 @@ const ContactSection = () => {
                               <Chip
                                 label={entry.keyword}
                                 size="small"
-                                sx={{ height: 18, fontSize: '0.65rem', background: 'rgba(21,101,192,0.1)', color: '#1565C0', border: '1px solid rgba(21,101,192,0.25)', fontWeight: 600 }}
+                                sx={{ height: 18, fontSize: '0.65rem', background: 'rgba(91,184,238,0.1)', color: '#5BB8EE', border: '1px solid rgba(91,184,238,0.25)', fontWeight: 600 }}
                               />
                             )}
                           </Box>
@@ -411,8 +411,8 @@ const ContactSection = () => {
         </Grid>
 
         {/* 푸터 */}
-        <Box sx={{ mt: { xs: 8, md: 10 }, textAlign: 'center', pt: 4, borderTop: '1px solid rgba(21,101,192,0.12)' }}>
-          <Typography variant="caption" sx={{ color: '#1976D2', fontWeight: 500 }}>
+        <Box sx={{ mt: { xs: 8, md: 10 }, textAlign: 'center', pt: 4, borderTop: '1px solid rgba(91,184,238,0.12)' }}>
+          <Typography variant="caption" sx={{ color: '#9B8FE8', fontWeight: 500 }}>
             © 2026 고세연. Built with React + MUI + Supabase ✨
           </Typography>
         </Box>
@@ -424,15 +424,16 @@ const ContactSection = () => {
 const inputSx = {
   '& .MuiOutlinedInput-root': {
     color: '#1A1A1A',
-    '& fieldset': { borderColor: 'rgba(21,101,192,0.25)' },
-    '&:hover fieldset': { borderColor: 'rgba(21,101,192,0.5)' },
-    '&.Mui-focused fieldset': { borderColor: '#1976D2' },
+    '& fieldset': { borderColor: 'rgba(91,184,238,0.25)' },
+    '&:hover fieldset': { borderColor: 'rgba(91,184,238,0.5)' },
+    '&.Mui-focused fieldset': { borderColor: '#9B8FE8' },
     background: 'rgba(255,255,255,0.6)',
     borderRadius: '10px',
   },
-  '& .MuiInputLabel-root': { color: '#1565C0' },
-  '& .MuiInputLabel-root.Mui-focused': { color: '#1976D2' },
+  '& .MuiInputLabel-root': { color: '#5BB8EE' },
+  '& .MuiInputLabel-root.Mui-focused': { color: '#9B8FE8' },
   '& .MuiInputBase-input::placeholder': { color: '#90A4AE' },
 };
 
 export default ContactSection;
+

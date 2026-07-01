@@ -1,57 +1,64 @@
-/* 컬러 팔레트 — 하늘색→파란색 그라데이션 시스템 */
+/* 컬러 팔레트 — 화이트 바탕 + 하늘색 + 연보라 포인트 */
 :root {
-  /* Primary */
-  --color-primary: #2B9FE0;
-  --color-primary-light: #5BBFF0;
-  --color-primary-dark: #0E7DB5;
+  /* Primary: 하늘색 */
+  --color-primary: #5BB8EE;
+  --color-primary-light: #84CDEF;
+  --color-primary-dark: #2E96D4;
 
-  /* Secondary / Accent */
-  --color-secondary: #DCF0FB;
-  --color-accent: #5BBFF0;
+  /* Accent: 연보라 */
+  --color-accent-purple: #9B8FE8;
+  --color-accent-purple-light: #BCB4F5;
+  --color-accent-purple-dark: #7265D0;
+
+  /* Secondary / Mint */
   --color-accent-mint: #2DC890;
+  --color-accent: #5BB8EE;
 
-  /* Background — 위에서 아래로 하늘색 → 진한 파란색 흐름 */
-  --color-bg-primary: #F0F8FF;
-  --color-bg-secondary: #DCF0FB;
-  --color-bg-subtle: #C5E5F7;
+  /* Background — 흰 바탕 */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F2F6FF;    /* 아주 연한 하늘 */
+  --color-bg-subtle: #F0EEFF;       /* 아주 연한 연보라 */
 
   /* Text */
-  --color-text-primary: #0D1F35;
-  --color-text-secondary: #3A6080;
-  --color-text-muted: #7AAAC8;
+  --color-text-primary: #1A2640;
+  --color-text-secondary: #4A5A7A;
+  --color-text-muted: #8A98B8;
   --color-text-on-dark: #FFFFFF;
 
   /* Border */
-  --color-border: #B0D8F0;
-  --color-border-light: #D4EEF9;
+  --color-border: #D0DCF0;
+  --color-border-light: #E4ECF8;
 
   /* Interactive */
-  --color-button-primary: #2B9FE0;
-  --color-button-hover: #0E7DB5;
-  --color-link: #2B9FE0;
-  --color-link-hover: #0E7DB5;
+  --color-button-primary: #5BB8EE;
+  --color-button-hover: #2E96D4;
+  --color-link: #5BB8EE;
+  --color-link-hover: #9B8FE8;
+
+  /* Gradient — 하늘→연보라 */
+  --gradient-primary: linear-gradient(135deg, #5BB8EE 0%, #9B8FE8 100%);
+  --gradient-soft: linear-gradient(135deg, #EEF6FF 0%, #F0EEFF 100%);
 
   /* Footer */
-  --color-footer-bg: #0E4D78;
-  --color-footer-text: #DCF0FB;
+  --color-footer-bg: #1A2640;
+  --color-footer-text: #C8D8F0;
 }
 
 /* 다크 모드 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg-primary: #071828;
-    --color-bg-secondary: #0D2035;
-    --color-bg-subtle: #132840;
-    --color-text-primary: #E8F4FD;
-    --color-text-secondary: #A0C8E0;
-    --color-text-muted: #5A90B0;
-    --color-primary: #4DB8E8;
-    --color-primary-light: #72CDF0;
-    --color-primary-dark: #2B9FE0;
-    --color-border: #1A3D5C;
-    --color-border-light: #224A6A;
-    --color-footer-bg: #040E18;
-    --color-footer-text: #B8DCEF;
+    --color-bg-primary: #0D1525;
+    --color-bg-secondary: #121E34;
+    --color-bg-subtle: #161830;
+    --color-text-primary: #E8EFF8;
+    --color-text-secondary: #A0B0D0;
+    --color-text-muted: #5A6888;
+    --color-primary: #7CCFF5;
+    --color-accent-purple: #B8AFF8;
+    --color-border: #1E2E48;
+    --color-border-light: #253550;
+    --color-footer-bg: #080E1A;
+    --color-footer-text: #A0B8D8;
   }
 }
 
